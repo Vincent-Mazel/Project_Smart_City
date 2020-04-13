@@ -4,22 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        app:srcCompat="@color/colorBackgroundNavBar"
-        android:layout_alignParentTop="true"
-        android:layout_gravity="top"/>
-
     <include
         layout="@layout/content_main"
         android:layout_width="match_parent"
-        android:layout_height="664dp"
-        android:layout_below="@+id/imageView"
+        android:layout_height="732dip"
         android:layout_alignParentTop="true"
         android:layout_gravity="top"
-        android:layout_marginTop="64dp" />
+        android:layout_marginBottom="64dip" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomAppBar"

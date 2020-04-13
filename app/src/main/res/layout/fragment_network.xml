@@ -72,7 +72,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dip"
+                android:layout_margin="16dip"
                 android:layout_weight="1"
                 android:text="Create your own network"
                 android:textAlignment="center"

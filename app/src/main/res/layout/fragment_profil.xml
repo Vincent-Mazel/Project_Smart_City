@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dip"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dip"
+            android:layout_marginTop="8dip"
+            android:text="Profil"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="100dip"
+            android:layout_marginTop="6dip"
+            android:layout_weight="1"
+            android:background="@drawable/ic_menu_black_24dp"
+            android:clickable="false" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dip"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Pseudo" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dip"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Poids" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dip"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Taille" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dip"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="mail" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="49dip"
+        android:layout_height="49dip"
+        android:layout_marginStart="175dip"
+        android:layout_marginTop="64dip"
+        android:baselineAlignBottom="false"
+        android:textAlignment="center"
+        app:srcCompat="@android:drawable/ic_menu_manage" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dip"
+        android:text="Gérer vos préférences"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="64dip"
+        android:text="Enregistrer ces changements" />
+
+</LinearLayout>

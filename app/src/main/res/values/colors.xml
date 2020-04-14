@@ -4,5 +4,10 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorAccentDark">#6A8AEB</color>
-    <color name="colorBackgroundNavBar">#9F000000</color>
+    <color name="colorBackgroundNavBar">#23000000</color>
+
+    <array name="colorPagesViewPager">
+        <item>#EDD9CF</item>
+        <item>#BED4D6</item>
+    </array>
 </resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_layout_choice"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/fragment_page_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dip"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/frag_choices_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="32dip" />
+
+    <SearchView
+        android:id="@+id/fragment_choice_searchView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="320dip"
+        tools:visibility="visible">
+
+    </SearchView>
+
+    <ListView
+        android:id="@+id/fragment_choice_listChoices"
+        android:layout_width="match_parent"
+        android:layout_height="252dp"
+        android:layout_marginStart="32dip"
+        android:layout_marginEnd="32dip"
+        android:layout_marginBottom="16dip"
+        android:background="@color/colorBackgroundNavBar" />
+
+    <Button
+        android:id="@+id/button_save_choices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="SAUVERGARDER" />
+
+    <View
+        android:id="@+id/fragment_choice_arrow"
+        android:layout_width="150dip"
+        android:layout_height="150dip"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bottom_navigation_color" />
+
+
+</LinearLayout>

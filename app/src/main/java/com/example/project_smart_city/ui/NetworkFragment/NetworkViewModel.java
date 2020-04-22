@@ -1,4 +1,4 @@
-package com.example.project_smart_city.ui.Network;
+package com.example.project_smart_city.ui.NetworkFragment;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

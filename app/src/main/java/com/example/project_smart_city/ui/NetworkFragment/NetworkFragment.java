@@ -1,4 +1,4 @@
-package com.example.project_smart_city.ui.Network;
+package com.example.project_smart_city.ui.NetworkFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

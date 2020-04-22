@@ -6,5 +6,9 @@
     <string name="bottom_navigation_menu_network">Networks</string>
     <string name="bottom_navigation_menu_profil">Profil</string>
     <string name="Lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</string>
+    <string name="title_news">News</string>
+    <string name="title_profil">Profil</string>
+    <string name="title_network">Network</string>
+    <string name="title_shoping">Shopping</string>
 
 </resources>

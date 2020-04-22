@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/title_shopping"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dip"
@@ -56,10 +56,10 @@
         </LinearLayout>
     </ScrollView>
 
-    <fragment
-        android:id="@+id/fragment3"
-        android:name="com.example.project_smart_city.NetworkFragment.NetworkFragment"
+    <ImageView
+        android:id="@+id/imageView7"
         android:layout_width="match_parent"
-        android:layout_height="97dp"
-        android:layout_margin="8dip" />
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/advertising" />
+
 </LinearLayout>

@@ -2,28 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_home"
+        android:id="@+id/navigation_home"
         android:enabled="true"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/bottom_navigation_menu_home"
-        app:showAsAction="ifRoom" />
+        android:title="@string/bottom_navigation_menu_home" />
     <item
-        android:id="@+id/action_commerce"
+        android:id="@+id/navigation_shopping"
         android:enabled="true"
         android:icon="@drawable/ic_shopping_basket_black_24dp"
-        android:title="@string/bottom_navigation_menu_commerce"
-        app:showAsAction="ifRoom" />
+        android:title="@string/bottom_navigation_menu_commerce"/>
     <item
-        android:id="@+id/action_network"
+        android:id="@+id/navigation_network"
         android:enabled="true"
         android:icon="@drawable/ic_supervisor_account_black_24dp"
-        android:title="@string/bottom_navigation_menu_network"
-        app:showAsAction="ifRoom" />
+        android:title="@string/bottom_navigation_menu_network" />
 
     <item
-        android:id="@+id/action_profil"
+        android:id="@+id/navigation_profil"
         android:enabled="true"
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="@string/bottom_navigation_menu_profil"
-        app:showAsAction="ifRoom" />
+        android:title="@string/bottom_navigation_menu_profil" />
 </menu>

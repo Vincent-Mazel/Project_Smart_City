@@ -84,7 +84,7 @@
 
     <fragment
         android:id="@+id/fragment2"
-        android:name="com.example.project_smart_city.NetworkFragment.NetworkFragment"
+        android:name="com.example.project_smart_city.ui.NetworkFragment.NetworkFragment"
         android:layout_width="match_parent"
         android:layout_height="97dp"
         android:layout_margin="8dip" />

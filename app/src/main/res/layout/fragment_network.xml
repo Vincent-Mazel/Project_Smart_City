@@ -20,11 +20,10 @@
             android:layout_marginEnd="8dp"
             android:text="@string/socials_network"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            android:textSize="20sp" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="368dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dip"
             android:layout_marginLeft="8dip"
@@ -33,17 +32,18 @@
             android:layout_marginRight="8dip"
             android:orientation="horizontal">
 
+            <SearchView
+                android:layout_width="150dip"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dip" />
+
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="191dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rechercher"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-            <SearchView
-                android:layout_width="200dip"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dip" />
         </LinearLayout>
 
         <ScrollView

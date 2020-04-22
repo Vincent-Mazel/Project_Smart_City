@@ -1,6 +1,5 @@
-package com.example.project_smart_city.NetworkFragment;
+package com.example.project_smart_city.ui.NewsFragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,30 +14,22 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.project_smart_city.R;
 
+public class NewsFragment extends Fragment {
 
-public class NetworkFragment extends Fragment {
-
-    private NetworkViewModel NetworkViewModel;
-    private Context mContext;
+    private NewsViewModel newsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NetworkViewModel =
-                ViewModelProviders.of(this).get(NetworkViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_network, container, false);
-        final TextView textView = root.findViewById(R.id.text_network);
-        NetworkViewModel.getText().observe(this, new Observer<String>() {
+        newsViewModel =
+                ViewModelProviders.of(this).get(NewsViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_actuality, container, false);
+        final TextView textView = root.findViewById(R.id.news);
+        newsViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
         return root;
-    }
-
-    @Override
-    public void onAttach(Context context){
-        super.onAttach(context);
-        mContext = context;
     }
 }

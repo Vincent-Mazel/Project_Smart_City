@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.project_smart_city.ui.NewsFragment.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_actuality" />
+
+    <fragment
+        android:id="@+id/navigation_profil"
+        android:name="com.example.project_smart_city.ui.ProfilFragment.ProfilFragment"
+        android:label="@string/title_profil"
+        tools:layout="@layout/fragment_profil" />
+
+    <fragment
+        android:id="@+id/navigation_network"
+        android:name="com.example.project_smart_city.ui.Network.NetworkFragment"
+        android:label="@string/title_network"
+        tools:layout="@layout/fragment_network" />
+    <fragment
+        android:id="@+id/navigation_shopping"
+        android:name="com.example.project_smart_city.ui.Shopping.ShoppingFragment"
+        android:label="fragment_shoping"
+        tools:layout="@layout/fragment_shoping" />
+</navigation>

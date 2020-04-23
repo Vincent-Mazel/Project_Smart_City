@@ -27,4 +27,9 @@
         android:name="com.example.project_smart_city.ui.Shopping.ShoppingFragment"
         android:label="fragment_shoping"
         tools:layout="@layout/fragment_shoping" />
+    <fragment
+        android:id="@+id/navigation_choices"
+        android:name="com.example.project_smart_city.ui.ChoicesFragment.ChoiceFragment"
+        android:label="fragment_choice"
+        tools:layout="@layout/fragment_choice" />
 </navigation>

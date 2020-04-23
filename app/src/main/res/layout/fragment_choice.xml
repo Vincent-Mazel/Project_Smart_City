@@ -1,59 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_layout_choice"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text_choices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="20dip"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/frag_choices_intro"
+    <ScrollView
+        android:id="@+id/scrollChoices"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="32dip" />
+        android:layout_height="wrap_content">
 
-    <SearchView
-        android:id="@+id/fragment_choice_searchView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="320dip"
-        tools:visibility="visible">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </SearchView>
+            <TextView
+                android:id="@+id/text_choices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="CHOICE"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textColor="@color/colorPrimary" />
 
-    <ListView
-        android:id="@+id/fragment_choice_listChoices"
-        android:layout_width="match_parent"
-        android:layout_height="252dp"
-        android:layout_marginStart="32dip"
-        android:layout_marginEnd="32dip"
-        android:layout_marginBottom="16dip"
-        android:background="@color/colorBackgroundNavBar" />
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginStart="175dip"
+                android:layout_marginTop="4dip"
+                android:layout_marginEnd="175dip"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary" />
 
-    <Button
-        android:id="@+id/button_save_choices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="SAUVERGARDER" />
+            <TextView
+                android:id="@+id/frag_choices_intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dip" />
 
-    <View
-        android:id="@+id/fragment_choice_arrow"
-        android:layout_width="150dip"
-        android:layout_height="150dip"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/bottom_navigation_color" />
+            <SearchView
+                android:id="@+id/fragment_choice_searchView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginEnd="32dp"
+                tools:visibility="visible">
+
+            </SearchView>
+
+            <ListView
+                android:id="@+id/fragment_choice_listChoices"
+                android:layout_width="match_parent"
+                android:layout_height="263dp"
+                android:layout_marginStart="32dip"
+                android:layout_marginEnd="32dip"
+                android:layout_marginBottom="16dip"
+                android:background="@color/colorBackgroundNavBar" />
+
+            <Button
+                android:id="@+id/button_save_choices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="SAUVERGARDER" />
+
+            <View
+                android:id="@+id/fragment_choice_arrow"
+                android:layout_width="100dip"
+                android:layout_height="100dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="32dip"
+                android:background="@android:drawable/ic_media_ff" />
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

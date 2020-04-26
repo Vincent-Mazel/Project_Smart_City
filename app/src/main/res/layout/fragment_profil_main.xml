@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_profil"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dip"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollProfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tilte_profil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dip"
+                    android:gravity="center_horizontal"
+                    android:text="PROFIL"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHighlight="@color/design_default_color_primary_dark" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="78dp"
+                    android:layout_height="3dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dip"
+                    android:background="@color/colorPrimary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TableLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dip"
+                        android:layout_marginTop="16dip">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dip">
+
+                            <EditText
+                                android:id="@+id/text_pseudo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="0dip"
+                                android:ems="10"
+                                android:inputType="textPersonName"
+                                android:text="Pseudo" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dip">
+
+                            <EditText
+                                android:id="@+id/text_poids"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="0dip"
+                                android:layout_marginStart="2dip"
+                                android:ems="10"
+                                android:inputType="numberDecimal"
+                                android:text="Poids" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dip">
+
+                            <EditText
+                                android:id="@+id/text_taille"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:inputType="numberDecimal"
+                                android:text="Taille" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dip">
+
+                            <EditText
+                                android:id="@+id/text_email"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:inputType="textEmailAddress"
+                                android:text="current@adr.mail" />
+
+                        </TableRow>
+
+                    </TableLayout>
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/fragmentProfil_profilPicture"
+                        android:layout_width="150dip"
+                        android:layout_height="150dip"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="16dip"
+                        android:src="@drawable/advertising"
+                        app:civ_border_color="#3f51b5"
+                        app:civ_border_width="4dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_color="#3f51b5"
+                        app:civ_shadow_radius="1dp" />
+
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/gererPreference"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="64dip"
+                    android:background="@android:drawable/ic_menu_manage"
+                    android:baselineAlignBottom="false"
+                    android:textAlignment="center"
+                    app:srcCompat="@android:drawable/ic_menu_manage" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dip"
+                    android:text="Gérer vos préférences"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/profil_btnSaveChange"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="64dip"
+                    android:onClick="onClickBot"
+                    android:text="Enregistrer ces changements" />
+
+            </LinearLayout>
+
+            <include
+                android:id="@+id/frag_prof_menu"
+                layout="@layout/layout_profil_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                tools:visibility="gone" />
+        </FrameLayout>
+    </ScrollView>
+
+
+</LinearLayout>

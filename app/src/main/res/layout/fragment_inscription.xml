@@ -4,13 +4,117 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/tilte_inscription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="32dip"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dip"
+        android:gravity="center_horizontal"
         android:text="INSCRIPTION"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorPrimary"
+        android:textColorHighlight="@color/design_default_color_primary_dark" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="150dp"
+        android:layout_height="3dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dip"
+        android:background="@color/colorPrimary" />
+
+    <LinearLayout
+        android:id="@+id/insription_section1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dip"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/inscription_infoPerso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBackgroundText"
+            android:text=" Informations personnelles"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <EditText
+            android:id="@+id/inscription_nom"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dip"
+            android:text="Nom"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <EditText
+            android:id="@+id/inscription_prenom"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dip"
+            android:text="Prénom"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <EditText
+            android:id="@+id/inscription_adrmail"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:inputType="textEmailAddress"
+            android:text="votre.adresse@mail.svp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/inscription_textVie_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="8dip"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="Password" />
+
+            <EditText
+                android:id="@+id/inscription_passwordConfirm"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:ems="10"
+                android:inputType="textPassword" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/inscription_textVie_password2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="8dip"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="Confirm password" />
+
+            <EditText
+                android:id="@+id/inscription_password"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dip"
+                android:ems="10"
+                android:inputType="textPassword" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/textView28"
@@ -20,26 +124,6 @@
         android:layout_marginEnd="64dip"
         android:layout_marginBottom="16dip"
         android:text="Pseudo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-    <EditText
-        android:id="@+id/textView29"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dip"
-        android:layout_marginEnd="64dip"
-        android:layout_marginBottom="16dip"
-        android:text="Prénom"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-    <EditText
-        android:id="@+id/textView30"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dip"
-        android:layout_marginEnd="64dip"
-        android:layout_marginBottom="16dip"
-        android:text="Nom"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <LinearLayout
@@ -79,51 +163,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView32"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dip"
-            android:layout_marginTop="24dip"
-            android:layout_weight="1"
-            android:text="Email"
-            android:textAlignment="textEnd"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        <EditText
-            android:id="@+id/editText7"
-            android:layout_width="214dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dip"
-            android:inputType="textEmailAddress"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView33"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dip"
-            android:layout_marginTop="24dip"
-            android:layout_weight="1"
-            android:text="password"
-            android:textAlignment="textEnd"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        <EditText
-            android:id="@+id/editText10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dip"
-            android:ems="10"
-            android:inputType="textPassword" />
 
     </LinearLayout>
 

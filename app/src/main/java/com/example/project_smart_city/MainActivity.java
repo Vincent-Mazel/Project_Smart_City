@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ScrollView;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -63,6 +65,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(i);
         this.finish();
     }
+
+    public void trierCommerces(View v){
+        // algo à implémenter pour trier les commerces
+        // Just a thought : implement on the server directly.
+
+
+        Switch aSwitch = findViewById(R.id.shopping_switchProxAnn);
+        TextView switchText = findViewById(R.id.shopping_textViewSwitch);
+        if(aSwitch.isChecked()){
+            switchText.setText("Proximité");
+        }
+        else
+            switchText.setText("Annuaire");
+    }
+
 
     @Override
     public void onClick(View view) {

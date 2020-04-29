@@ -25,7 +25,7 @@ public class NetworkFragment extends Fragment {
         networkViewModel =
                 ViewModelProviders.of(this).get(NetworkViewModel.class);
         View root = inflater.inflate(R.layout.fragment_network, container, false);
-        final TextView textView = root.findViewById(R.id.text_network);
+        final TextView textView = root.findViewById(R.id.title_network);
         networkViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

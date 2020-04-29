@@ -1,117 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_network"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="NETWORK"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorPrimary"
+        android:textColorHighlight="@color/design_default_color_primary_dark" />
+
+    <View
+        android:id="@+id/divider9"
+        android:layout_width="78dp"
+        android:layout_height="3dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dip"
+        android:background="@color/colorPrimary" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dip"
+        android:layout_marginLeft="8dip"
+        android:layout_marginTop="8dip"
+        android:layout_marginEnd="8dip"
+        android:layout_marginRight="8dip"
+        android:orientation="horizontal">
+
+        <SearchView
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dip" />
 
         <TextView
-            android:id="@+id/text_network"
-            android:layout_width="match_parent"
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/socials_network"
-            android:textAlignment="center"
+            android:text="Rechercher"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-        <LinearLayout
-            android:layout_width="368dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dip"
-            android:layout_marginLeft="8dip"
-            android:layout_marginTop="8dip"
-            android:layout_marginEnd="8dip"
-            android:layout_marginRight="8dip"
-            android:orientation="horizontal">
-
-            <SearchView
-                android:layout_width="150dip"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dip" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rechercher"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-        </LinearLayout>
-
-        <ScrollView
-            android:id="@+id/scrollViewResult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="32dip">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="50dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dip"
-                android:layout_weight="1"
-                android:text="Create your own network"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="54dp"
-                android:layout_margin="8dip"
-                android:clickable="true"
-                android:focusable="true"
-                app:backgroundTint="@android:color/darker_gray"
-                app:srcCompat="@android:drawable/ic_input_add" />
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="75dp" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dip"
-            android:text="Networks available"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-        <ScrollView
-            android:id="@+id/scrollViewNetWorkAvailable"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="32dip">
-
-        </ScrollView>
 
     </LinearLayout>
 
+    <ScrollView
+        android:id="@+id/scrollViewResult"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="32dip">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dip"
+            android:layout_weight="1"
+            android:text="Create your own network"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_margin="8dip"
+            android:clickable="true"
+            android:focusable="true"
+            app:backgroundTint="@android:color/darker_gray"
+            app:srcCompat="@android:drawable/ic_input_add" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dip"
+        android:text="Networks available"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <ScrollView
+        android:id="@+id/scrollViewNetWorkAvailable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dip">
+
+    </ScrollView>
+
+
+</LinearLayout>

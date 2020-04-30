@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             switchText.setText("Annuaire");
     }
 
-
     @Override
     public void onClick(View view) {
 

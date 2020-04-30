@@ -55,7 +55,7 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dip"
-                    android:text="Nom"
+                    android:hint="Name"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimaryDark" />
 
@@ -64,7 +64,7 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dip"
-                    android:text="Prénom"
+                    android:hint="Prénom"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimaryDark" />
 
@@ -73,26 +73,16 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
+                    android:hint="votre.adresse@mail.svp"
                     android:inputType="textEmailAddress"
-                    android:text="votre.adresse@mail.svp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimaryDark" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="right"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/inscription_textVie_password"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_marginBottom="8dip"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="Password"
-                        android:textColor="@color/colorPrimaryDark" />
 
                     <EditText
                         android:id="@+id/inscription_password"
@@ -100,6 +90,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:ems="10"
+                        android:hint="Password"
                         android:inputType="textPassword" />
 
                 </LinearLayout>
@@ -107,18 +98,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="right"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/inscription_textVie_password2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_marginBottom="8dip"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="Confirm password"
-                        android:textColor="@color/colorPrimaryDark" />
 
                     <EditText
                         android:id="@+id/inscription_confirm_password"
@@ -126,6 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dip"
                         android:ems="10"
+                        android:hint="Confirm password"
                         android:inputType="textPassword" />
 
                 </LinearLayout>
@@ -154,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_margin="8dp"
-                    android:text="Pseudo"
+                    android:hint="Pseudo"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimaryDark" />
 
@@ -176,8 +158,8 @@
                             android:layout_width="128dip"
                             android:layout_height="match_parent"
                             android:ems="10"
+                            android:hint="Size (cm)"
                             android:inputType="number"
-                            android:text="Size (cm)"
                             android:textAlignment="center"
                             android:textColor="@color/colorPrimaryDark" />
 
@@ -186,8 +168,8 @@
                             android:layout_width="128dip"
                             android:layout_height="match_parent"
                             android:ems="10"
+                            android:hint="Weight"
                             android:inputType="numberSigned"
-                            android:text="Weight"
                             android:textAlignment="center"
                             android:textColor="@color/colorPrimaryDark" />
 

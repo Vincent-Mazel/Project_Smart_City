@@ -10,7 +10,7 @@ public class NetworkViewModel extends ViewModel {
 
     public NetworkViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Réseaux Sociaux");
+        mText.setValue("Network");
     }
 
     public LiveData<String> getText() {

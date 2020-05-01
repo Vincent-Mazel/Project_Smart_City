@@ -1,77 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_layout_choice"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/scrollChoices"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="638dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/text_choices"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="CHOICE"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/colorPrimary" />
 
-            <TextView
-                android:id="@+id/text_choices"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:text="CHOICE"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/colorPrimary" />
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginStart="175dip"
+            android:layout_marginTop="4dip"
+            android:layout_marginEnd="175dip"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary" />
 
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginStart="175dip"
-                android:layout_marginTop="4dip"
-                android:layout_marginEnd="175dip"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary" />
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/fragment_choice_scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_margin="32dp">
 
-            <TextView
-                android:id="@+id/frag_choices_intro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="4dip" />
-
-            <SearchView
-                android:id="@+id/fragment_choice_searchView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginEnd="32dp"
-                tools:visibility="visible">
-
-            </SearchView>
-
-            <ListView
+            <LinearLayout
                 android:id="@+id/fragment_choice_listChoices"
                 android:layout_width="match_parent"
-                android:layout_height="312dp"
-                android:layout_marginStart="32dip"
-                android:layout_marginEnd="32dip"
-                android:layout_marginBottom="16dip"
-                android:background="@color/colorBackgroundNavBar" />
-
-            <Button
-                android:id="@+id/button_save_choices"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="64dp"
-                android:text="SAUVERGARDER" />
+                android:orientation="vertical" />
+        </androidx.core.widget.NestedScrollView>
 
-        </LinearLayout>
-    </ScrollView>
+        <Button
+            android:id="@+id/button_save_choices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="84dp" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

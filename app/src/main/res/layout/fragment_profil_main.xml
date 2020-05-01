@@ -49,74 +49,49 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TableLayout
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dip"
-                        android:layout_marginTop="16dip">
+                        android:layout_marginTop="16dip"
+                        android:orientation="vertical">
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="4dip">
+                        <EditText
+                            android:id="@+id/text_pseudo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dip"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:text="Pseudo" />
 
-                            <EditText
-                                android:id="@+id/text_pseudo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="0dip"
-                                android:ems="10"
-                                android:inputType="textPersonName"
-                                android:text="Pseudo" />
-                        </TableRow>
+                        <EditText
+                            android:id="@+id/text_poids"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dip"
+                            android:layout_marginStart="2dip"
+                            android:ems="10"
+                            android:inputType="numberDecimal"
+                            android:text="Poids" />
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="4dip">
+                        <EditText
+                            android:id="@+id/text_taille"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="numberDecimal"
+                            android:text="Taille" />
 
-                            <EditText
-                                android:id="@+id/text_poids"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="0dip"
-                                android:layout_marginStart="2dip"
-                                android:ems="10"
-                                android:inputType="numberDecimal"
-                                android:text="Poids" />
-                        </TableRow>
+                        <EditText
+                            android:id="@+id/text_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="textEmailAddress"
+                            android:text="current@adr.mail" />
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="4dip">
-
-                            <EditText
-                                android:id="@+id/text_taille"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:ems="10"
-                                android:inputType="numberDecimal"
-                                android:text="Taille" />
-
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="4dip">
-
-                            <EditText
-                                android:id="@+id/text_email"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:ems="10"
-                                android:inputType="textEmailAddress"
-                                android:text="current@adr.mail" />
-
-                        </TableRow>
-
-                    </TableLayout>
+                    </LinearLayout>
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                         android:id="@+id/fragmentProfil_profilPicture"

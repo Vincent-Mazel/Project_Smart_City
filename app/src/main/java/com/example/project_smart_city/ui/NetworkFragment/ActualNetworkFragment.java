@@ -28,6 +28,7 @@ public class ActualNetworkFragment extends Fragment {
     private Button btnPost;
     private LinearLayout posts;
     private TextView author;
+    private TextView networkName;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,7 +36,10 @@ public class ActualNetworkFragment extends Fragment {
                 ViewModelProviders.of(this).get(NetworkViewModel.class);
         View root = inflater.inflate(R.layout.fragment_actualnetwork, container, false);
 
-        //this.author = // à compléter;
+
+        this.networkName = root.findViewById(R.id.title_actualNetwork);
+        networkName.setText("Network_name"); // getNetworkName()
+        //this.author = getPseudo // à compléter;
         this.btnPost = root.findViewById(R.id.fragment_actualNetwork_BtnPost);
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +63,7 @@ public class ActualNetworkFragment extends Fragment {
 
             LayoutInflater newView = (LayoutInflater) this.getContext().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View v = newView.inflate(R.layout.layout_posts, null);
+
             TextView thePost = v.findViewById(R.id.post_actualPost);
             TextView author = v.findViewById(R.id.post_author);
             TextView date = v.findViewById(R.id.post_date);
@@ -71,6 +76,7 @@ public class ActualNetworkFragment extends Fragment {
 
             posts.addView(v, 0, new ViewGroup.LayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)));
         }
+
 
 
 

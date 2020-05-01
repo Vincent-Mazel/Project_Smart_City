@@ -52,7 +52,6 @@
         android:layout_height="match_parent"
         android:layout_marginStart="4dp"
         android:layout_weight="1"
-        android:text="du texte"
         android:textSize="18sp" />
 
 </LinearLayout>

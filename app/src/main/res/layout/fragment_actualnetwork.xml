@@ -6,85 +6,72 @@
     android:layout_margin="8dip"
     android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/fragment_actualNetwork_scrollView"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/title_actualNetwork"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/design_default_color_primary_dark" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/fragment_actualNetwork_menu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            app:srcCompat="@drawable/ic_menu_black_24dp" />
 
-                <TextView
-                    android:id="@+id/title_actualNetwork"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center_horizontal"
-                    android:text="NETWORK"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textColor="@color/colorPrimary"
-                    android:textColorHighlight="@color/design_default_color_primary_dark" />
+    </FrameLayout>
 
-                <ImageView
-                    android:id="@+id/fragment_actualNetwork_menu"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="right"
-                    app:srcCompat="@drawable/ic_menu_black_24dp" />
-            </FrameLayout>
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="78dp"
+        android:layout_height="3dp"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:background="@color/colorPrimary" />
 
-            <View
-                android:id="@+id/divider6"
-                android:layout_width="78dp"
-                android:layout_height="3dp"
-                android:layout_gravity="center"
-                android:layout_margin="8dp"
-                android:background="@color/colorPrimary" />
+    <FrameLayout
+        android:id="@+id/fragment_actualNetwork_PostingMsg"
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        android:layout_margin="16dp">
 
-            <FrameLayout
-                android:id="@+id/fragment_actualNetwork_PostingMsg"
-                android:layout_width="match_parent"
-                android:layout_height="135dp"
-                android:layout_margin="16dp">
+        <EditText
+            android:id="@+id/fragment_actualNetwork_msgToPost"
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:ems="10"
+            android:hint="What would you like to share with us today ?"
+            android:inputType="textLongMessage|textAutoCorrect|textMultiLine" />
 
-                <EditText
-                    android:id="@+id/fragment_actualNetwork_msgToPost"
-                    android:layout_width="match_parent"
-                    android:layout_height="87dp"
-                    android:ems="10"
-                    android:hint="What would you like to share with us today ?"
-                    android:inputType="textLongMessage|textAutoCorrect|textMultiLine" />
+        <Button
+            android:id="@+id/fragment_actualNetwork_BtnPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:background="@drawable/border"
+            android:text="Post"
+            android:textColor="@color/colorPrimaryDark" />
+    </FrameLayout>
 
-                <Button
-                    android:id="@+id/fragment_actualNetwork_BtnPost"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    android:background="@drawable/border"
-                    android:text="Post"
-                    android:textColor="@color/colorPrimaryDark" />
-            </FrameLayout>
+    <ScrollView
+        android:id="@+id/fragment_actualNetwork_scrollViewPosts"
+        android:layout_width="match_parent"
+        android:layout_height="329dp">
 
-            <ScrollView
-                android:id="@+id/fragment_actualNetwork_scrollViewPosts"
-                android:layout_width="match_parent"
-                android:layout_height="329dp">
-
-                <LinearLayout
-                    android:id="@+id/fragment_actualNetwork_linearViewPosts"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"></LinearLayout>
-            </ScrollView>
-
-        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_actualNetwork_linearViewPosts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
     </ScrollView>
 
 </LinearLayout>

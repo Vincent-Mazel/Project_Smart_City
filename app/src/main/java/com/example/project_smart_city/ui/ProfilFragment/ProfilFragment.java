@@ -37,6 +37,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
     private ViewGroup viewNavigation;
     private ImageView fade;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -71,7 +72,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onClick(View view) {
                 //System.out.println("button saved change clicked");
-                openMenu();
+                saveChangement();
             }
         });
 
@@ -98,6 +99,14 @@ public class ProfilFragment extends Fragment implements View.OnClickListener{
     }
 
 
+    private void saveChangement(){
+        TextView pseudo = MainActivity.getScrollView().findViewById(R.id.text_pseudo);
+        TextView poids = MainActivity.getScrollView().findViewById(R.id.text_poids);
+        TextView taille = MainActivity.getScrollView().findViewById(R.id.text_taille);
+        TextView email = MainActivity.getScrollView().findViewById(R.id.text_email);
+
+        // add to database //
+    }
     private void openMenu() {
         Transition transitionTop = new Slide(Gravity.RIGHT);
         transitionTop.addTarget(R.id.frag_prof_menu);

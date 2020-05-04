@@ -6,6 +6,7 @@
     <color name="colorAccentDark">#7F000103</color>
     <color name="colorBackgroundNavBar">#23000000</color>
     <color name="colorBackgroundText">#9FB4E7</color>
+    <color name="fade">#BD000000</color>
 
     <array name="colorPagesViewPager">
         <item>#EDD9CF</item>

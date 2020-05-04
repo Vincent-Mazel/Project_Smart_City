@@ -30,7 +30,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
                     android:gravity="center_horizontal"
-                    android:text="PROFIL"
+                    android:text="@string/bottom_navigation_menu_profil"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="@color/colorPrimary"
@@ -63,7 +63,8 @@
                             android:layout_margin="0dip"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:text="Pseudo" />
+                            android:text="@string/pseudo"
+                            android:autofillHints="" />
 
                         <EditText
                             android:id="@+id/text_poids"
@@ -73,7 +74,8 @@
                             android:layout_marginStart="2dip"
                             android:ems="10"
                             android:inputType="numberDecimal"
-                            android:text="Poids" />
+                            android:text="@string/poids"
+                            android:autofillHints="" />
 
                         <EditText
                             android:id="@+id/text_taille"
@@ -81,7 +83,8 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:inputType="numberDecimal"
-                            android:text="Taille" />
+                            android:text="@string/taille"
+                            android:autofillHints="" />
 
                         <EditText
                             android:id="@+id/text_email"
@@ -89,7 +92,8 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:inputType="textEmailAddress"
-                            android:text="current@adr.mail" />
+                            android:text="@string/current_adr_mail"
+                            android:autofillHints="" />
 
                     </LinearLayout>
 
@@ -126,7 +130,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dip"
-                    android:text="Gérer vos préférences"
+                    android:text="@string/gerer_vos_pref"
                     android:textAlignment="center" />
 
                 <Button
@@ -135,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="64dip"
                     android:onClick="onClickBot"
-                    android:text="Enregistrer ces changements" />
+                    android:text="@string/enregistrer_ces_changements" />
 
             </LinearLayout>
 

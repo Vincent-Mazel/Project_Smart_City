@@ -52,10 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         scrollView.post(new Runnable() { public void run() { scrollView.fullScroll(View.FOCUS_DOWN); } });
     }
 
-    public void onClickTop(View view){
-        scrollView.post(new Runnable() { public void run() { scrollView.fullScroll(View.FOCUS_UP); } });
-    }
-
     public static ScrollView getScrollView(){
         return scrollView;
     }
@@ -85,6 +81,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
 }
 

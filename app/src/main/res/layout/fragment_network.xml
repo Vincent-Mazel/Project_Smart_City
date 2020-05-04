@@ -22,7 +22,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:gravity="center_horizontal"
-                android:text="NETWORK"
+                android:text="@string/network"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/colorPrimary"
@@ -100,7 +100,7 @@
                 android:background="@drawable/border"
                 android:fontFamily="casual"
                 android:onClick="onClickCreateNetwork"
-                android:text="Create your network"
+                android:text="@string/create_your_network"
                 android:textColor="@color/colorPrimaryDark" />
 
             <TextView
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:fontFamily="serif-monospace"
-                android:text="Your available networks"
+                android:text="@string/your_available_networks"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -130,7 +130,7 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border"
-                        android:text=" Nom"
+                        android:text="@string/nom"
                         android:textStyle="bold" />
 
                     <TextView
@@ -138,7 +138,7 @@
                         android:layout_width="146dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border"
-                        android:text=" Desription"
+                        android:text="@string/desription"
                         android:textStyle="italic" />
 
                     <TextView
@@ -146,14 +146,14 @@
                         android:layout_width="71dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border"
-                        android:text=" Statut" />
+                        android:text="@string/statut" />
 
                     <TextView
                         android:id="@+id/network_tableNombre"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/border"
-                        android:text=" People" />
+                        android:text="@string/people" />
                 </TableRow>
 
             </TableLayout>

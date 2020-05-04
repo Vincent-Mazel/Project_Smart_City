@@ -13,9 +13,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.transition.Slide;
 import androidx.transition.Transition;
@@ -49,28 +47,15 @@ public class ShoppingFragment extends Fragment {
         viewNavigation.setVisibility(View.GONE);
 
         this.linearLayout = root.findViewById(R.id.Shopping_Shop1);
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("need to open the shop");
-                openShopOffers();
-            }
+        linearLayout.setOnClickListener(view -> {
+            System.out.println("need to open the shop");
+            openShopOffers();
         });
 
         ImageView imageViewFade = root.findViewById(R.id.shopFade);
         ImageView imageViewClsoe = root.findViewById(R.id.close);
-        imageViewClsoe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                closeShopOffer();
-            }
-        });
-        imageViewFade.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                closeShopOffer();
-            }
-        });
+        imageViewClsoe.setOnClickListener(view -> closeShopOffer());
+        imageViewFade.setOnClickListener(view -> closeShopOffer());
 
 
         String[] arraySpinner = new String[]{
@@ -83,19 +68,14 @@ public class ShoppingFragment extends Fragment {
                 "Vetement"
         };
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_spinner_item, arraySpinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
 
         final TextView textView = root.findViewById(R.id.title_shoppingSearch);
-        shoppingViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        shoppingViewModel.getText().observe(this, s -> textView.setText(s));
         return root;
     }
 

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <ScrollView
+        android:id="@+id/inscription_scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/inscription_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -20,7 +22,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dip"
                 android:gravity="center_horizontal"
-                android:text="INSCRIPTION"
+                android:text="@string/inscription"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/colorPrimary"
@@ -47,7 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorBackgroundText"
-                    android:text=" Informations personnelles"
+                    android:text="@string/informations_personnelles"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <EditText
@@ -55,7 +57,9 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dip"
-                    android:hint="Name"
+                    android:autofillHints=""
+                    android:hint="@string/name"
+                    android:inputType="textPersonName"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimaryDark" />
 
@@ -64,19 +68,22 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dip"
-                    android:hint="Prénom"
+                    android:hint="@string/pr_nom"
+                    android:inputType="textPersonName"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:autofillHints="" />
 
                 <EditText
                     android:id="@+id/inscription_adrmail"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:hint="votre.adresse@mail.svp"
+                    android:hint="@string/votre_adresse_mail_svp"
                     android:inputType="textEmailAddress"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:autofillHints="" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -90,8 +97,9 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:ems="10"
-                        android:hint="Password"
-                        android:inputType="textPassword" />
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:autofillHints="" />
 
                 </LinearLayout>
 
@@ -107,8 +115,9 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dip"
                         android:ems="10"
-                        android:hint="Confirm password"
-                        android:inputType="textPassword" />
+                        android:hint="@string/confirm_password"
+                        android:inputType="textPassword"
+                        android:autofillHints="" />
 
                 </LinearLayout>
 
@@ -127,7 +136,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorBackgroundText"
-                    android:text=" Informations complémentaires"
+                    android:text="@string/informations_compl_mentaires"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <EditText
@@ -136,7 +145,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_margin="8dp"
-                    android:hint="Pseudo"
+                    android:autofillHints=""
+                    android:hint="@string/pseudo"
+                    android:inputType="textPersonName"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/colorPrimaryDark" />
 
@@ -158,20 +169,22 @@
                             android:layout_width="128dip"
                             android:layout_height="match_parent"
                             android:ems="10"
-                            android:hint="Size (cm)"
+                            android:hint="@string/size_cm"
                             android:inputType="number"
                             android:textAlignment="center"
-                            android:textColor="@color/colorPrimaryDark" />
+                            android:textColor="@color/colorPrimaryDark"
+                            android:autofillHints="" />
 
                         <EditText
                             android:id="@+id/inscription_weight"
                             android:layout_width="128dip"
                             android:layout_height="match_parent"
                             android:ems="10"
-                            android:hint="Weight"
+                            android:hint="@string/weight"
                             android:inputType="numberSigned"
                             android:textAlignment="center"
-                            android:textColor="@color/colorPrimaryDark" />
+                            android:textColor="@color/colorPrimaryDark"
+                            android:autofillHints="" />
 
                     </LinearLayout>
 
@@ -180,16 +193,16 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="left"
                         android:orientation="vertical"
-                        android:paddingLeft="@android:dimen/app_icon_size">
+                        android:paddingStart="@android:dimen/app_icon_size">
 
                         <TextView
                             android:id="@+id/inscription_birthdayText"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
                             android:layout_margin="16dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Birthday"
+                            android:text="@string/birthday"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
                             android:textColor="@color/colorPrimaryDark" />
 
@@ -205,7 +218,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="32dip"
                 android:shadowColor="@color/colorPrimaryDark"
-                android:text="CREATE ACCOUNT"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/colorPrimaryDark" />
 

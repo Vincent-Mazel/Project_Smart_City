@@ -9,9 +9,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.project_smart_city.R;
@@ -34,24 +32,16 @@ public class NetworkFragment extends Fragment {
         this.currentFrag = root.findViewById(R.id.fragment_scrollViewPageOne);
 
         this.btnCreate = root.findViewById(R.id.network_createBtn);
-        btnCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NetworkCreateFragment nextFrag= new NetworkCreateFragment();
-                Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
-                        .add(R.id.fragment_networkMainPage,nextFrag)
-                        .addToBackStack(null)
-                        .commit();
-                currentFrag.setVisibility(View.GONE);
-            }
+        btnCreate.setOnClickListener(view -> {
+            NetworkCreateFragment nextFrag= new NetworkCreateFragment();
+            Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_networkMainPage,nextFrag)
+                    .addToBackStack(null)
+                    .commit();
+            currentFrag.setVisibility(View.GONE);
         });
         final TextView textView = root.findViewById(R.id.title_network);
-        networkViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        networkViewModel.getText().observe(this, s -> textView.setText(s));
         return root;
     }
 }

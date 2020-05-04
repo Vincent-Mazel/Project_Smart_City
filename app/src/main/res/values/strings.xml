@@ -10,5 +10,36 @@
     <string name="title_profil">Profil</string>
     <string name="title_network">Network</string>
     <string name="title_shopping">Shopping</string>
-
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="stayConnected">Rester connecté</string>
+    <string name="create">Create</string>
+    <string name="private1">Private</string>
+    <string name="public1">Public</string>
+    <string name="statut">Statut</string>
+    <string name="network_name">Network_name</string>
+    <string name="network_description">Network_description</string>
+    <string name="create_network">Create network</string>
+    <string name="inscription">INSCRIPTION</string>
+    <string name="birthday">Birthday</string>
+    <string name="weight">Weight</string>
+    <string name="size_cm">Size (cm)</string>
+    <string name="pseudo">Pseudo</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="informations_personnelles">Informations personnelles</string>
+    <string name="informations_compl_mentaires">Informations complémentaires</string>
+    <string name="votre_adresse_mail_svp">votre.adresse@mail.svp</string>
+    <string name="name">Name</string>
+    <string name="pr_nom">Prénom</string>
+    <string name="create_your_network">Create your network</string>
+    <string name="people">People</string>
+    <string name="nom">Nom</string>
+    <string name="desription">Desription</string>
+    <string name="network">NETWORK</string>
+    <string name="your_available_networks">Your available networks</string>
+    <string name="current_adr_mail">current@adr.mail</string>
+    <string name="enregistrer_ces_changements">Enregistrer ces changements</string>
+    <string name="poids">Poids</string>
+    <string name="taille">Taille</string>
+    <string name="gerer_vos_pref">Gérer vos préférences</string>
 </resources>

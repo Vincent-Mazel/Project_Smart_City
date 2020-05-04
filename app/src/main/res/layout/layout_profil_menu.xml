@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout_menuProf"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -41,9 +42,8 @@
                     android:id="@+id/fragmentProfil_profilPicture2"
                     android:layout_width="150dip"
                     android:layout_height="150dip"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="84dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="64dp"
                     android:src="@drawable/advertising"
                     app:civ_border_color="#3f51b5"
                     app:civ_border_width="4dp"
@@ -51,73 +51,88 @@
                     app:civ_shadow_color="#3f51b5"
                     app:civ_shadow_radius="1dp" />
 
+                <TextView
+                    android:id="@+id/frag_prof_menu_textIma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center"
+                    android:gravity="center"
+                    android:text="Tapoter sur l'image pour changer"
+                    android:textColor="@color/colorAccent" />
+
                 <View
                     android:id="@+id/divider3"
                     android:layout_width="150dip"
                     android:layout_height="3dp"
-                    android:layout_gravity="right"
+                    android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dip"
                     android:layout_marginBottom="8dip"
                     android:background="@color/colorPrimary" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/profil_prenom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginTop="8dip"
-                    android:layout_marginRight="16dip"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginRight="32dp"
                     android:text="Prénom"
-                    android:textAlignment="textEnd" />
+                    />
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/profil_nom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginTop="8dip"
-                    android:layout_marginRight="16dip"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="32dp"
                     android:text="Nom"
-                    android:textAlignment="textEnd" />
+                    />
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/profil_sexe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginTop="8dip"
-                    android:layout_marginRight="16dip"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="32dp"
                     android:text="Sexe"
-                    android:textAlignment="textEnd" />
+                     />
 
                 <View
                     android:id="@+id/divider4"
                     android:layout_width="150dp"
                     android:layout_height="3dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="76dp"
-                    android:layout_marginEnd="16dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
                     android:layout_marginBottom="8dip"
                     android:background="@color/colorPrimary" />
 
                 <ImageView
-                    android:id="@+id/imageView6"
+                    android:id="@+id/fragment_profil_PrefLogo"
                     android:layout_width="49dip"
                     android:layout_height="49dip"
-                    android:layout_gravity="right"
-                    android:layout_marginEnd="16dip"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border"
                     android:baselineAlignBottom="false"
                     android:textAlignment="center"
-                    app:srcCompat="@android:drawable/ic_menu_manage" />
+                    app:srcCompat="@android:drawable/btn_star_big_off" />
+
+                <TextView
+                    android:id="@+id/fragment_profil_Pref"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:text="Gérer vos préférences" />
 
                 <Button
                     android:id="@+id/logout_btn"
                     android:layout_width="135dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:layout_gravity="center"
                     android:layout_marginTop="32dip"
-                    android:layout_marginRight="16dip"
                     android:onClick="logOut"
                     android:text="LogOut" />
 

@@ -38,12 +38,7 @@ public class NetworkCreateFragment extends Fragment {
         this.currentLayout = root.findViewById(R.id.fragment_LinearPageTwo);
 
         this.buttonCreate = root.findViewById(R.id.fragment_createNetworkBtn);
-        buttonCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createNetwork();
-            }
-        });
+        buttonCreate.setOnClickListener(view -> createNetwork());
 
         return root;
     }

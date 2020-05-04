@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_aChoice"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/border">
-
-    <TextView
-        android:id="@+id/choice_actualChoice"
-        android:layout_width="286dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="4dp"
-        android:gravity="start"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="24sp" />
 
     <CheckBox
         android:id="@+id/choice_checkBox"
         style="@style/Widget.AppCompat.CompoundButton.CheckBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginEnd="32dp"
         android:layout_weight="1"
-        android:checked="false" />
+        android:checked="true" />
+
+    <TextView
+        android:id="@+id/choice_actualChoice"
+        android:layout_width="353dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:gravity="start"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="24sp" />
 
 </LinearLayout>

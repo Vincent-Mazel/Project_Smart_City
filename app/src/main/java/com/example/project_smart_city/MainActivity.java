@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static ScrollView scrollView;
     private static NavigationView navigationView;
     private static NavigationView navigationViewFade;
+    private static User userLoged;
 
 
     @Override
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.main_activity);
 
         scrollView = findViewById(R.id.scroll_main);
+        Intent i = getIntent();
+        userLoged = (User)i.getSerializableExtra("UserLogin");
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
 
@@ -86,5 +89,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    public static User getUser(){
+        return userLoged;
+    }
 }
 

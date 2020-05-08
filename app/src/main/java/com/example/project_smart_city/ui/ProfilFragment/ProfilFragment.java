@@ -25,6 +25,7 @@ import androidx.transition.TransitionManager;
 
 import com.example.project_smart_city.MainActivity;
 import com.example.project_smart_city.R;
+import com.example.project_smart_city.User;
 import com.example.project_smart_city.ui.ChoicesFragment.ChoiceFragment;
 import com.example.project_smart_city.ui.ChoicesFragment.PreferencesFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -35,6 +36,7 @@ import java.io.InputStream;
 import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.project_smart_city.R.id.text_pseudo;
 
 
 public class ProfilFragment extends Fragment implements View.OnClickListener {
@@ -49,9 +51,13 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
     static final int RESULT_LOAD_IMG = 1;
     private CircularImageView profilPictureOpenMenu;
     private ImageView imagePref;
+    private User user = MainActivity.getUser();
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+
 
         this.profilViewModel =
                 ViewModelProviders.of(this).get(ProfilViewModel.class);
@@ -60,6 +66,17 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
         this.menu = root.findViewById(R.id.navigationView2);
         this.btnSaveChenges = root.findViewById(R.id.profil_btnSaveChange);
         this.buttonToPref = root.findViewById(R.id.gererPreference);
+
+        TextView view_text_pseudo = root.findViewById(R.id.text_pseudo);
+        TextView view_text_weight = root.findViewById(R.id.text_poids);
+        TextView view_text_size = root.findViewById(R.id.text_taille);
+        TextView view_text_email = root.findViewById(R.id.text_email);
+
+        view_text_email.setText(this.user.getEmail());
+        view_text_pseudo.setText(this.user.getPseudo());
+        System.out.println(user);
+        view_text_size.setText(Integer.toString(this.user.getSize()));
+        view_text_weight.setText(Integer.toString(this.user.getWeight()));
 
 
         this.profilPicture = root.findViewById(R.id.fragmentProfil_profilPicture2);
@@ -71,12 +88,13 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
 
         this.profilPictureOpenMenu = root.findViewById(R.id.fragmentProfil_profilPicture);
 
-        profilPictureOpenMenu.setOnClickListener(view -> openMenu());
+        profilPictureOpenMenu.setOnClickListener(view ->
+                openMenu());
+
 
         this.imagePref = root.findViewById(R.id.fragment_profil_PrefLogo);
         imagePref.setOnClickListener(view -> {
             // OPEN PREF
-            System.out.println("PREF OPENING BITACH");
             PreferencesFragment preferencesFragment = new PreferencesFragment();
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_profil, preferencesFragment).commit();
@@ -123,7 +141,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
 
 
     private void saveChangement(){
-        TextView pseudo = MainActivity.getScrollView().findViewById(R.id.text_pseudo);
+        TextView pseudo = MainActivity.getScrollView().findViewById(text_pseudo);
         TextView poids = MainActivity.getScrollView().findViewById(R.id.text_poids);
         TextView taille = MainActivity.getScrollView().findViewById(R.id.text_taille);
         TextView email = MainActivity.getScrollView().findViewById(R.id.text_email);
@@ -131,6 +149,14 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
         // add to database //
     }
     private void openMenu() {
+        TextView textView_prenom = MainActivity.getScrollView().findViewById(R.id.profil_prenom);
+        textView_prenom.setText(this.user.getName());
+        TextView textView_nom = MainActivity.getScrollView().findViewById(R.id.profil_nom);
+        textView_nom.setText(this.user.getName());
+        TextView textView_sexe = MainActivity.getScrollView().findViewById(R.id.profil_sexe);
+        textView_sexe.setText(this.user.getName());
+
+
         Transition transitionTop = new Slide(Gravity.RIGHT);
         transitionTop.addTarget(R.id.frag_prof_menu);
         TransitionManager.beginDelayedTransition(viewNavigation, transitionTop);

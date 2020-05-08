@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,8 +32,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void LogIn(View v){
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+        TextView text_email = findViewById(R.id.login_email);
+        TextView text_password = findViewById(R.id.login_password);
+
+        String email = text_email.getText().toString();
+        String password = text_password.getText().toString();
+
+        DatabaseHandler databaseHandler = new DatabaseHandler(this, null, null, 1);
+        User user = new User();
+        user = databaseHandler.findHandler(email);
+        if(user == null){
+            Toast.makeText(this, "Email not in database, Sign In !", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            if(password.equals(user.getPassword())){
+                Intent i = new Intent(this, MainActivity.class);
+                i.putExtra("UserLogin", user);
+                startActivity(i);
+            }
+            else {
+                Toast.makeText(this, "Password is not correct. Try again please.", Toast.LENGTH_SHORT).show();
+                text_password.setError("wrong password");
+            }
+        }
+
+
+
+
+
     }
     public void openInscription(View v){
         Intent i = new Intent(this, InscriptionActivity.class);

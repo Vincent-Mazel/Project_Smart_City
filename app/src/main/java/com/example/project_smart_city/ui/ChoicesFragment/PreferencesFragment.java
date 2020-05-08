@@ -74,9 +74,6 @@ public class PreferencesFragment extends Fragment {
 
     public void chargePref(){
         // SQL request to charge every pref possible.
-
-
-
         ArrayList<String> strings = new ArrayList<>();
         strings.add("Meteo");
         strings.add("Trafic");
@@ -84,8 +81,6 @@ public class PreferencesFragment extends Fragment {
         strings.add("Sport");
         strings.add("Animation");
         strings.add("Cinema");
-
-
         for(int i = 0; i< strings.size(); ++i){
             LayoutInflater newView = (LayoutInflater) this.getContext().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View v = newView.inflate(R.layout.layout_listchoices, null);
@@ -96,4 +91,6 @@ public class PreferencesFragment extends Fragment {
             linearLayoutList.addView(v);
         }
     }
+
+
 }

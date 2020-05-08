@@ -139,17 +139,32 @@
                     android:text="@string/informations_compl_mentaires"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                <EditText
-                    android:id="@+id/inscription_pseudo"
-                    android:layout_width="219dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_margin="8dp"
-                    android:autofillHints=""
-                    android:hint="@string/pseudo"
-                    android:inputType="textPersonName"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/colorPrimaryDark" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/inscription_pseudo"
+                        android:layout_width="219dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:autofillHints=""
+                        android:hint="@string/pseudo"
+                        android:inputType="textPersonName"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                    <Spinner
+                        android:id="@+id/spinner_sexe_inscription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dip"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -202,6 +217,7 @@
                             android:layout_margin="16dp"
                             android:layout_weight="1"
                             android:gravity="center"
+                            android:inputType="date"
                             android:text="@string/birthday"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
                             android:textColor="@color/colorPrimaryDark" />

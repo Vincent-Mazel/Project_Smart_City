@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void logOut(View v){
+        userLoged = null;
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
         this.finish();

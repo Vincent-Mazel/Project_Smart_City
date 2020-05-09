@@ -160,7 +160,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateHandler(int ID, String pseudo, Integer weight, Integer size, String email) {
+    public boolean updateInfoUser(int ID, String pseudo, Integer weight, Integer size, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues args = new ContentValues();
         args.put(USER_ID, ID);

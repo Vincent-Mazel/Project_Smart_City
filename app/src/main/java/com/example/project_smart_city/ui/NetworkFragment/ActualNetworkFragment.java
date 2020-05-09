@@ -52,7 +52,7 @@ public class ActualNetworkFragment extends Fragment {
         menuImage.setOnClickListener(view -> {
             if(!isMenuOpen){
                 openMenu();
-                main.setBackgroundColor(R.color.fade);
+                //main.setBackgroundColor(R.color.fade);
 
             }
             else {

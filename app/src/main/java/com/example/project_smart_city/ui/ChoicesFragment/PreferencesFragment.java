@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.project_smart_city.InscriptionActivity;
+import com.example.project_smart_city.LoginActivity;
 import com.example.project_smart_city.MainActivity;
 import com.example.project_smart_city.R;
 
@@ -59,7 +60,7 @@ public class PreferencesFragment extends Fragment {
             btnValidate.setText("Sauvegarder & entrer dans SmartCity");
             btnValidate.setOnClickListener(view -> {
                 // send every data to the DataBase.  saveNewUserInDB();
-                Intent i = new Intent(getActivity(), MainActivity.class);
+                Intent i = new Intent(getActivity(), LoginActivity.class);
                 i.putExtra("UserLogin", InscriptionActivity.getUser());
                 startActivity(i);
                 getActivity().finish();

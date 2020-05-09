@@ -89,6 +89,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
         this.fade = root.findViewById(id.FADE);
         this.viewNavigation = root.findViewById(id.frag_prof_menu);
 
+
         db = new DatabaseHandler(getContext(), null, null, 1);
         db.getWritableDatabase();
 
@@ -160,7 +161,17 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
         TextView taille = MainActivity.getScrollView().findViewById(id.text_taille);
         TextView email = MainActivity.getScrollView().findViewById(id.text_email);
 
-        // add to database //
+
+        db.getWritableDatabase();
+        user.setWeight(Integer.parseInt(poids.getText().toString()));
+        user.setSize(Integer.parseInt(taille.getText().toString()));
+        user.setPseudo(pseudo.getText().toString());
+        user.setEmail(email.getText().toString());
+        db.updateInfoUser(user.getId(),pseudo.getText().toString(),Integer.parseInt(poids.getText().toString()),Integer.parseInt(taille.getText().toString()),email.getText().toString());
+        db.close();
+
+        Toast.makeText(getContext(),"Changes saved !", Toast.LENGTH_SHORT).show();
+
     }
     private void openMenu() {
         TextView textView_prenom = MainActivity.getScrollView().findViewById(id.profil_prenom);

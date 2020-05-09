@@ -1,6 +1,8 @@
 package com.example.project_smart_city;
 
 import android.app.DatePickerDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -28,12 +30,16 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     private static ScrollView scrollView;
     private Boolean isChoiceOpen = false;
 
+    private static User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_inscription);
+
+
 
         scrollView = findViewById(R.id.inscription_scrollView);
         textViewBirthday = findViewById(R.id.inscription_birthdayText);
@@ -123,10 +129,6 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
         Date min = new Date("January 1, 2007");
 
 
-        System.out.println("\n"
-                +min + "\n" + date
-);
-
         // Test if fields are'nt empty
         if(name.equals("") || email.equals("") || surname.equals("") || password.equals("") || pseudo.equals("") || text_weight.getText().toString().equals("") ||text_size.getText().toString().equals("") || birthday.equals("Birthday")){
             Toast.makeText(this, "Please fill every fields.",Toast.LENGTH_SHORT).show();
@@ -149,8 +151,12 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                         int weight = Integer.parseInt(text_weight.getText().toString());
 
                         if(dbHandler.findHandler(email) == null){
-                            User user = new User (pseudo,name,surname,email,sex,birthday,password,size,weight);
-                            dbHandler.addHandler(user);
+                            Bitmap icon = BitmapFactory.decodeResource(this.getResources(),R.drawable.profil);
+                            byte[] data = DatabaseHandler.getByte(icon);
+                            user = new User (pseudo,name,surname,email,sex,birthday,password,size,weight,data);
+                            dbHandler.addUser(user);
+                            dbHandler.updateProfilImg(user.getId(), user.getProfilPicture());
+                            System.out.println(user);
                             return true;
                         }
                         else {
@@ -174,4 +180,6 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
             }
         }
     }
+
+    public static User getUser(){return user;}
 }

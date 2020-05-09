@@ -1,6 +1,5 @@
 package com.example.project_smart_city;
 
-import android.media.Image;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,13 +16,13 @@ public class User implements Serializable {
     private String password;
     private int size;
     private int weight;
-    private Image profilPicture;
+    private byte[] profilPicture;
     private ArrayList<String> listChoices;
     private ArrayList<String> listInterests;
 
     public User() {}
 
-    public User(String pseudo, String name, String surname, String email,String sex, String birthday, String password, int size, int weight) {
+    public User(String pseudo, String name, String surname, String email,String sex, String birthday, String password, int size, int weight, byte[] img) {
         this.pseudo = pseudo;
         this.name = name;
         this.surname = surname;
@@ -33,6 +32,7 @@ public class User implements Serializable {
         this.password = password;
         this.size = size;
         this.weight = weight;
+        this.profilPicture = img;
     }
 
     public int getId() {
@@ -79,7 +79,7 @@ public class User implements Serializable {
         this.weight = weight;
     }
 
-    public void setProfilPicture(Image profilPicture) {
+    public void setProfilPicture(byte[] profilPicture) {
         this.profilPicture = profilPicture;
     }
 
@@ -127,7 +127,7 @@ public class User implements Serializable {
         return weight;
     }
 
-    public Image getProfilPicture() {
+    public byte[] getProfilPicture() {
         return profilPicture;
     }
 

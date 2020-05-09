@@ -60,6 +60,7 @@ public class PreferencesFragment extends Fragment {
             btnValidate.setOnClickListener(view -> {
                 // send every data to the DataBase.  saveNewUserInDB();
                 Intent i = new Intent(getActivity(), MainActivity.class);
+                i.putExtra("UserLogin", InscriptionActivity.getUser());
                 startActivity(i);
                 getActivity().finish();
             });

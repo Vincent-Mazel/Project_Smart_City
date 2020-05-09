@@ -61,54 +61,99 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="0dip"
+                            android:autofillHints=""
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:text="@string/pseudo"
-                            android:autofillHints="" />
+                            android:text="@string/pseudo" />
 
-                        <EditText
-                            android:id="@+id/text_poids"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0dip"
-                            android:layout_marginStart="2dip"
-                            android:ems="10"
-                            android:inputType="numberDecimal"
-                            android:text="@string/poids"
-                            android:autofillHints="" />
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                        <EditText
-                            android:id="@+id/text_taille"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="numberDecimal"
-                            android:text="@string/taille"
-                            android:autofillHints="" />
+                            <EditText
+                                android:id="@+id/text_poids"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="0dip"
+                                android:layout_marginStart="2dip"
+                                android:autofillHints=""
+                                android:ems="10"
+                                android:inputType="numberDecimal"
+                                android:text="@string/poids" />
+
+                            <TextView
+                                android:id="@+id/hintfont_style"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="end"
+                                android:gravity="center"
+                                android:hint="(kg)"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:id="@+id/text_taille"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:autofillHints=""
+                                android:ems="10"
+                                android:inputType="numberDecimal"
+                                android:text="@string/taille" />
+
+                            <TextView
+                                android:id="@+id/hintfont_style2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="end"
+                                android:gravity="center"
+                                android:hint="(cm)"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        </FrameLayout>
 
                         <EditText
                             android:id="@+id/text_email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:autofillHints=""
                             android:ems="10"
                             android:inputType="textEmailAddress"
-                            android:text="@string/current_adr_mail"
-                            android:autofillHints="" />
+                            android:text="@string/current_adr_mail" />
 
                     </LinearLayout>
 
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                        android:id="@+id/fragmentProfil_profilPicture"
-                        android:layout_width="150dip"
-                        android:layout_height="150dip"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="16dip"
-                        android:src="@drawable/advertising"
-                        app:civ_border_color="#3f51b5"
-                        app:civ_border_width="4dp"
-                        app:civ_shadow="true"
-                        app:civ_shadow_color="#3f51b5"
-                        app:civ_shadow_radius="1dp" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/colorAccent"
+                        app:cardBackgroundColor="@color/colorBackgroundText"
+                        app:cardCornerRadius="10dp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="140dp"
+                            android:layout_height="140dp"
+                            android:layout_gravity="center">
+
+                            <ImageView
+                                android:id="@+id/fragmentProfil_profilPicture"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:scaleType="fitCenter" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
 
 
                 </LinearLayout>

@@ -23,20 +23,21 @@ import androidx.transition.Slide;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
+import com.example.project_smart_city.DatabaseHandler;
 import com.example.project_smart_city.MainActivity;
-import com.example.project_smart_city.R;
 import com.example.project_smart_city.User;
 import com.example.project_smart_city.ui.ChoicesFragment.ChoiceFragment;
 import com.example.project_smart_city.ui.ChoicesFragment.PreferencesFragment;
 import com.google.android.material.navigation.NavigationView;
-import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.project_smart_city.R.id;
 import static com.example.project_smart_city.R.id.text_pseudo;
+import static com.example.project_smart_city.R.layout;
 
 
 public class ProfilFragment extends Fragment implements View.OnClickListener {
@@ -44,14 +45,15 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
     private ProfilViewModel profilViewModel;
     private Button buttonToPref;
     private Button btnSaveChenges;
-    private CircularImageView profilPicture;
+    private ImageView profilPicture;
     private NavigationView menu;
     private ViewGroup viewNavigation;
     private ImageView fade;
     static final int RESULT_LOAD_IMG = 1;
-    private CircularImageView profilPictureOpenMenu;
+    private ImageView profilPictureOpenMenu;
     private ImageView imagePref;
     private User user = MainActivity.getUser();
+    private DatabaseHandler db;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -61,43 +63,51 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
 
         this.profilViewModel =
                 ViewModelProviders.of(this).get(ProfilViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_profil_main, container, false);
+        View root = inflater.inflate(layout.fragment_profil_main, container, false);
 
-        this.menu = root.findViewById(R.id.navigationView2);
-        this.btnSaveChenges = root.findViewById(R.id.profil_btnSaveChange);
-        this.buttonToPref = root.findViewById(R.id.gererPreference);
+        this.menu = root.findViewById(id.navigationView2);
+        this.btnSaveChenges = root.findViewById(id.profil_btnSaveChange);
+        this.buttonToPref = root.findViewById(id.gererPreference);
 
-        TextView view_text_pseudo = root.findViewById(R.id.text_pseudo);
-        TextView view_text_weight = root.findViewById(R.id.text_poids);
-        TextView view_text_size = root.findViewById(R.id.text_taille);
-        TextView view_text_email = root.findViewById(R.id.text_email);
+        TextView view_text_pseudo = root.findViewById(id.text_pseudo);
+        TextView view_text_weight = root.findViewById(id.text_poids);
+        TextView view_text_size = root.findViewById(id.text_taille);
+        TextView view_text_email = root.findViewById(id.text_email);
 
         view_text_email.setText(this.user.getEmail());
         view_text_pseudo.setText(this.user.getPseudo());
-        System.out.println(user);
         view_text_size.setText(Integer.toString(this.user.getSize()));
         view_text_weight.setText(Integer.toString(this.user.getWeight()));
 
 
-        this.profilPicture = root.findViewById(R.id.fragmentProfil_profilPicture2);
-
-        this.fade = root.findViewById(R.id.FADE);
-        this.viewNavigation = root.findViewById(R.id.frag_prof_menu);
+        this.profilPicture = root.findViewById(id.fragmentProfil_profilPicture2);
+        this.profilPictureOpenMenu = root.findViewById(id.fragmentProfil_profilPicture);
 
 
 
-        this.profilPictureOpenMenu = root.findViewById(R.id.fragmentProfil_profilPicture);
+
+        this.fade = root.findViewById(id.FADE);
+        this.viewNavigation = root.findViewById(id.frag_prof_menu);
+
+        db = new DatabaseHandler(getContext(), null, null, 1);
+        db.getWritableDatabase();
+
+        profilPicture.setImageBitmap(db.getProfilPicture(user.getId()));
+        profilPictureOpenMenu.setImageBitmap(db.getProfilPicture(user.getId()));
+        db.close();
+
+
 
         profilPictureOpenMenu.setOnClickListener(view ->
-                openMenu());
+               openMenu());
 
 
-        this.imagePref = root.findViewById(R.id.fragment_profil_PrefLogo);
+        this.imagePref = root.findViewById(id.fragment_profil_PrefLogo);
         imagePref.setOnClickListener(view -> {
             // OPEN PREF
             PreferencesFragment preferencesFragment = new PreferencesFragment();
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_profil, preferencesFragment).commit();
+            transaction.replace(id.fragment_profil, preferencesFragment).commit();
             ScrollView scrollView = MainActivity.getScrollView();
             scrollView.post(() -> scrollView.smoothScrollTo(0, scrollView.getBottom()));
             viewNavigation.setVisibility(View.GONE);
@@ -110,6 +120,10 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
             photoPickerIntent.setType("image/*");
             startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
 
+            // Save new profile picture
+
+
+
         });
 
         viewNavigation.setVisibility(View.GONE);
@@ -117,7 +131,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
         buttonToPref.setOnClickListener(view -> {
             ChoiceFragment nextFrag= new ChoiceFragment();
             Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_profil, nextFrag, "findThisFragment")
+                    .replace(id.fragment_profil, nextFrag, "findThisFragment")
                     .addToBackStack(null)
                     .commit();
 
@@ -131,7 +145,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
 
         fade.setOnClickListener(view -> closeMenu());
 
-        TextView title = root.findViewById(R.id.tilte_profil);
+        TextView title = root.findViewById(id.tilte_profil);
         profilViewModel.getText().observe(this, s -> title.setText(s));
 
 
@@ -142,23 +156,23 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
 
     private void saveChangement(){
         TextView pseudo = MainActivity.getScrollView().findViewById(text_pseudo);
-        TextView poids = MainActivity.getScrollView().findViewById(R.id.text_poids);
-        TextView taille = MainActivity.getScrollView().findViewById(R.id.text_taille);
-        TextView email = MainActivity.getScrollView().findViewById(R.id.text_email);
+        TextView poids = MainActivity.getScrollView().findViewById(id.text_poids);
+        TextView taille = MainActivity.getScrollView().findViewById(id.text_taille);
+        TextView email = MainActivity.getScrollView().findViewById(id.text_email);
 
         // add to database //
     }
     private void openMenu() {
-        TextView textView_prenom = MainActivity.getScrollView().findViewById(R.id.profil_prenom);
+        TextView textView_prenom = MainActivity.getScrollView().findViewById(id.profil_prenom);
         textView_prenom.setText(this.user.getName());
-        TextView textView_nom = MainActivity.getScrollView().findViewById(R.id.profil_nom);
-        textView_nom.setText(this.user.getName());
-        TextView textView_sexe = MainActivity.getScrollView().findViewById(R.id.profil_sexe);
-        textView_sexe.setText(this.user.getName());
+        TextView textView_nom = MainActivity.getScrollView().findViewById(id.profil_nom);
+        textView_nom.setText(this.user.getSurname());
+        TextView textView_sexe = MainActivity.getScrollView().findViewById(id.profil_sexe);
+        textView_sexe.setText(this.user.getSexe());
 
 
         Transition transitionTop = new Slide(Gravity.RIGHT);
-        transitionTop.addTarget(R.id.frag_prof_menu);
+        transitionTop.addTarget(id.frag_prof_menu);
         TransitionManager.beginDelayedTransition(viewNavigation, transitionTop);
         viewNavigation.setVisibility(View.VISIBLE);
         ScrollView scrollView = MainActivity.getScrollView();
@@ -167,7 +181,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
 
     private void closeMenu(){
         Transition transitionTop = new Slide(Gravity.RIGHT);
-        transitionTop.addTarget(R.id.frag_prof_menu);
+        transitionTop.addTarget(id.frag_prof_menu);
         TransitionManager.beginDelayedTransition(viewNavigation, transitionTop);
         viewNavigation.setVisibility(View.GONE);
     }
@@ -183,13 +197,17 @@ public class ProfilFragment extends Fragment implements View.OnClickListener {
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 profilPicture.setImageBitmap(selectedImage);
                 profilPictureOpenMenu.setImageBitmap(selectedImage);
+                db.getWritableDatabase();
+                byte[] newData = DatabaseHandler.getByte(selectedImage);
+                db.updateProfilImg(user.getId(),newData);
+                db.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                Toast.makeText(getContext(), "Une erreur s'est produite",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "An error has occurred",Toast.LENGTH_LONG).show();
             }
 
         }else {
-            Toast.makeText(getContext(),"Vous n'avez pas choisi d'image", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),"Pick a image please", Toast.LENGTH_LONG).show();
 
         }
     }

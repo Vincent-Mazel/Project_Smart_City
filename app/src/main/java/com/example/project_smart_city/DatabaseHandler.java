@@ -5,6 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.io.ByteArrayOutputStream;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -43,7 +47,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_USER + " ( "+ USER_ID +" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + NAME + " TEXT, " + SURNAME + " TEXT, " + PSEUDO + " TEXT, " + SEX + " TEXT, " +
-                EMAIL + " TEXT, " + PASSWORD + " TEXT, " + BIRTHDAY + " TEXT, " + SIZE + " INTEGER, " + WEIGHT + " INTEGER, " + IMAGE + " TEXT, " + CHOICES + " TEXT, " + INTEREST +  " TEXT)" );
+                EMAIL + " TEXT, " + PASSWORD + " TEXT, " + BIRTHDAY + " TEXT, " + SIZE + " INTEGER, " + WEIGHT + " INTEGER, " + IMAGE + " BLOB, " + CHOICES + " TEXT, " + INTEREST +  " TEXT)" );
 
     }
 
@@ -66,7 +70,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return result;
     }
 
-    public void addHandler(User user){
+    public void addUser(User user){
         ContentValues values = new ContentValues();
         //values.put(USER_ID, user.getId());
         values.put(NAME, user.getName());
@@ -78,7 +82,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(BIRTHDAY, user.getBirthday());
         values.put(SIZE, user.getSize());
         values.put(WEIGHT, user.getWeight());
-        //values.put(IMAGE, user.getProfilPicture().toString());
+        values.put(IMAGE, user.getProfilPicture());
         //values.put(CHOICES, user.getListChoices().toString());
         //values.put(INTEREST, user.getListInterests().toString());
 
@@ -134,6 +138,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+    public boolean updateProfilImg(int id , byte[] img ) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues args = new ContentValues();
+            args.put(USER_ID, id);
+            args.put(IMAGE, img);
+            return  db.update(TABLE_USER, args, USER_ID + "=" + id,null)>0;
+
+    }
+
+    // convert from bitmap to byte[]
+    public static byte[] getByte(Bitmap bitmap){
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        return stream.toByteArray();
+    }
+
+    // convert from byte array to bitmap
+    public static Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
+    }
+
 
     public boolean updateHandler(int ID, String pseudo, Integer weight, Integer size, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -145,5 +170,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         args.put(EMAIL, email);
 
         return db.update(TABLE_USER, args, USER_ID + "=" + ID, null) > 0;
+    }
+
+    public Bitmap getProfilPicture(int id){
+        String query = "SELECT IMAGE FROM " + TABLE_USER + " WHERE ID =" + id;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()){
+            byte[] imgByte = cursor.getBlob(0);
+            cursor.close();
+            return BitmapFactory.decodeByteArray(imgByte,0, imgByte.length);
+        }
+        if (!cursor.isClosed()){
+            cursor.close();
+        }
+        return null;
     }
 }

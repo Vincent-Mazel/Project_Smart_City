@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -47,7 +49,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_USER + " ( "+ USER_ID +" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + NAME + " TEXT, " + SURNAME + " TEXT, " + PSEUDO + " TEXT, " + SEX + " TEXT, " +
-                EMAIL + " TEXT, " + PASSWORD + " TEXT, " + BIRTHDAY + " TEXT, " + SIZE + " INTEGER, " + WEIGHT + " INTEGER, " + IMAGE + " BLOB, " + CHOICES + " TEXT, " + INTEREST +  " TEXT)" );
+                EMAIL + " TEXT, " + PASSWORD + " TEXT, " + BIRTHDAY + " TEXT, " + SIZE + " INTEGER, " + WEIGHT + " INTEGER, " + IMAGE + " BLOB, " + CHOICES + " BLOB, " + INTEREST +  " BLOB)" );
 
     }
 
@@ -70,6 +72,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return result;
     }
 
+
     public void addUser(User user){
         ContentValues values = new ContentValues();
         //values.put(USER_ID, user.getId());
@@ -83,8 +86,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(SIZE, user.getSize());
         values.put(WEIGHT, user.getWeight());
         values.put(IMAGE, user.getProfilPicture());
-        //values.put(CHOICES, user.getListChoices().toString());
-        //values.put(INTEREST, user.getListInterests().toString());
+        values.put(CHOICES, user.getListChoices());
+        values.put(INTEREST, user.getListInterests());
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_USER, null, values);
@@ -109,6 +112,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             user.setBirthday(cursor.getString(7));
             user.setSize(Integer.parseInt(cursor.getString(8)));
             user.setWeight(Integer.parseInt(cursor.getString(9)));
+            user.setListChoices(cursor.getString(11));
+            user.setListInterests(cursor.getString(12));
             cursor.close();
         } else {
             user = null;
@@ -138,12 +143,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateProfilImg(int id , byte[] img ) {
+    public void updateProfilImg(int id , byte[] img ) {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues args = new ContentValues();
             args.put(USER_ID, id);
             args.put(IMAGE, img);
-            return  db.update(TABLE_USER, args, USER_ID + "=" + id,null)>0;
+        db.update(TABLE_USER, args, USER_ID + "=" + id, null);
 
     }
 
@@ -160,7 +165,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateInfoUser(int ID, String pseudo, Integer weight, Integer size, String email) {
+    public void updateInfoUser(int ID, String pseudo, Integer weight, Integer size, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues args = new ContentValues();
         args.put(USER_ID, ID);
@@ -169,7 +174,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         args.put(SIZE, size);
         args.put(EMAIL, email);
 
-        return db.update(TABLE_USER, args, USER_ID + "=" + ID, null) > 0;
+        db.update(TABLE_USER, args, USER_ID + "=" + ID, null);
     }
 
     public Bitmap getProfilPicture(int id){
@@ -185,5 +190,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cursor.close();
         }
         return null;
+    }
+
+    public void updataChoicesList(int id, JSONObject jsonObject){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues args = new ContentValues();
+        args.put(USER_ID, id);
+        args.put(CHOICES, String.valueOf(jsonObject));
+
+        db.update(TABLE_USER, args, USER_ID + "=" + id, null);
+    }
+
+    public void updataInterestList(int id, JSONObject jsonObject){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues args = new ContentValues();
+        args.put(USER_ID, id);
+        args.put(INTEREST, String.valueOf(jsonObject));
+
+        db.update(TABLE_USER, args, USER_ID + "=" + id, null);
     }
 }

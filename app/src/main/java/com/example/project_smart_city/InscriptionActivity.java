@@ -1,5 +1,6 @@
 package com.example.project_smart_city;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,21 +22,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 
 public class InscriptionActivity extends AppCompatActivity implements View.OnClickListener{
 
     private DatePickerDialog pickerDialog;
     private TextView textViewBirthday;
+    @SuppressLint("StaticFieldLeak")
     private static ScrollView scrollView;
     private Boolean isChoiceOpen = false;
 
     private static User user;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_inscription);
 
@@ -58,8 +62,8 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
 
         Spinner spinner = findViewById(R.id.spinner_sexe_inscription);
         String[] arraySpinner = new String[]{
-                "Homme",
-                "Femme",
+                "Male",
+                "Female",
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
@@ -68,7 +72,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
         spinner.setAdapter(adapter);
 
         Button button = findViewById(R.id.incription_buttonValidate);
-        button.setText("Faîtes vos choix");
+        button.setText(R.string.makeChoices);
         button.setOnClickListener(view -> {
             try {
                 if(addUser()){
@@ -122,7 +126,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
         String sex = spinner_sex.getSelectedItem().toString();
 
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = simpleDateFormat.parse(birthday);
 
 
@@ -145,6 +149,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                 }
                 else {
                     // Check if you're 13 or older
+                    assert date != null;
                     if(date.before(min)){
                         DatabaseHandler dbHandler = new DatabaseHandler(this, null, null, 1);
                         int size = Integer.parseInt(text_size.getText().toString());
@@ -156,7 +161,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                             user = new User (pseudo,name,surname,email,sex,birthday,password,size,weight,data);
                             dbHandler.addUser(user);
                             dbHandler.updateProfilImg(user.getId(), user.getProfilPicture());
-                            System.out.println(user);
+                            user = dbHandler.findHandler(user.getEmail());
                             return true;
                         }
                         else {

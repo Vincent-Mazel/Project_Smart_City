@@ -1,8 +1,9 @@
 package com.example.project_smart_city;
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class User implements Serializable {
 
@@ -17,8 +18,8 @@ public class User implements Serializable {
     private int size;
     private int weight;
     private byte[] profilPicture;
-    private ArrayList<String> listChoices;
-    private ArrayList<String> listInterests;
+    private String listChoices;
+    private String listInterests;
 
     public User() {}
 
@@ -83,11 +84,11 @@ public class User implements Serializable {
         this.profilPicture = profilPicture;
     }
 
-    public void setListChoices(ArrayList<String> listChoices) {
+    public void setListChoices(String listChoices) {
         this.listChoices = listChoices;
     }
 
-    public void setListInterests(ArrayList<String> listInterests) {
+    public void setListInterests(String listInterests) {
         this.listInterests = listInterests;
     }
 
@@ -131,14 +132,15 @@ public class User implements Serializable {
         return profilPicture;
     }
 
-    public ArrayList<String> getListChoices() {
+    public String getListChoices() {
         return listChoices;
     }
 
-    public ArrayList<String> getListInterests() {
+    public String getListInterests() {
         return listInterests;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "User{" +

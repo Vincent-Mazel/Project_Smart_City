@@ -42,4 +42,12 @@
     <string name="poids">Weight</string>
     <string name="taille">Size</string>
     <string name="gerer_vos_pref">Manage your preferences</string>
+    <string name="intro_change">You can change them whenever you want</string>
+    <string name="makeChoices">Make your choices</string>
+    <string name="saveInterests">Sauvergarder ces préférences</string>
+    <string name="save_and_SignIn"><![CDATA[Sauvegarder & entrer dans SmartCity]]></string>
+    <string name="interests">Interests</string>
+    <string name="you_can_change_int">You can change your interest whenever you want to.</string>
+    <string name="by_local">By localisation</string>
+    <string name="alphabetical">Alphabetical</string>
 </resources>

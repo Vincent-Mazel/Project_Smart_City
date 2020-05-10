@@ -10,7 +10,7 @@ public class ChoiceViewModel extends ViewModel {
 
     public ChoiceViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Choix");
+        mText.setValue("Choices");
 
     }
 

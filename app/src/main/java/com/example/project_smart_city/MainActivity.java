@@ -16,6 +16,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -24,17 +26,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static NavigationView navigationViewFade;
     private static User userLoged;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
         scrollView = findViewById(R.id.scroll_main);
         Intent i = getIntent();
         userLoged = (User)i.getSerializableExtra("UserLogin");
+        DatabaseHandler db = new DatabaseHandler(getApplicationContext(), null, null, 1);
+        db.getWritableDatabase();
+        userLoged = db.findHandler(userLoged.getEmail());
+
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
 
@@ -74,10 +80,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Switch aSwitch = findViewById(R.id.shopping_switchProxAnn);
         TextView switchText = findViewById(R.id.shopping_textViewSwitch);
         if(aSwitch.isChecked()){
-            switchText.setText("Proximité");
+            switchText.setText(R.string.by_local);
         }
         else
-            switchText.setText("Annuaire");
+            switchText.setText(R.string.alphabetical);
     }
 
     @Override

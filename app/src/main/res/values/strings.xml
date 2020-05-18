@@ -50,4 +50,9 @@
     <string name="you_can_change_int">You can change your interest whenever you want to.</string>
     <string name="by_local">By localisation</string>
     <string name="alphabetical">Alphabetical</string>
+    <string name="delete_this_network">Delete this Network</string>
+    <string name="pending_membership_requests">Pending membership requests</string>
+    <string name="what_would_you_like_to_share_with_us_today">What would you like to share with us today ?</string>
+    <string name="post">Post</string>
+    <string name="menu_network">menu_network</string>
 </resources>

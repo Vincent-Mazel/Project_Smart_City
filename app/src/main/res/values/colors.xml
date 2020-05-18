@@ -7,7 +7,7 @@
     <color name="colorBackgroundNavBar">#23000000</color>
     <color name="colorBackgroundText">#9FB4E7</color>
     <color name="fade">#BD000000</color>
-
+    <color name="lightfade">#32050505</color>
     <array name="colorPagesViewPager">
         <item>#EDD9CF</item>
         <item>#BED4D6</item>

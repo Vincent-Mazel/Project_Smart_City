@@ -8,9 +8,10 @@
     <ScrollView
         android:id="@+id/fragment_scrollViewPageOne"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="622dp">
 
         <LinearLayout
+            android:id="@+id/network_pageOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -45,52 +46,70 @@
 
             </SearchView>
 
-            <ScrollView
+            <androidx.core.widget.NestedScrollView
                 android:id="@+id/scrollViewResult"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="32dp">
+                android:layout_width="wrap_content"
+                android:layout_height="129dp"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                <TableLayout
+                    android:id="@+id/tableLayout_network_available"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                    <TableLayout
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center">
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border"
+                        android:gravity="start">
 
-                        <TableRow
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/network_tableName1"
+                            android:layout_width="72dp"
+                            android:layout_height="match_parent"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/nom"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/network_tableDescription1"
+                            android:layout_width="153dp"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/border">
+                            android:background="@color/lightfade"
+                            android:fontFamily="sans-serif-condensed"
+                            android:gravity="center"
+                            android:text="@string/desription"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="italic" />
+                         <TextView
+                            android:id="@+id/network_tableStatut1"
+                            android:layout_width="55dp"
+                            android:layout_height="match_parent"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/statut"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/border" />
+                        <TextView
+                            android:id="@+id/network_tableNombre1"
+                            android:layout_width="55dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/lightfade"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/people"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                    </TableRow>
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:layout_width="146dp"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/border" />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:layout_width="71dp"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/border" />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:layout_width="50dp"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/border" />
-
-                        </TableRow>
-
-                    </TableLayout>
-                </LinearLayout>
-            </ScrollView>
+                </TableLayout>
+            </androidx.core.widget.NestedScrollView>
 
             <Button
                 android:id="@+id/network_createBtn"
@@ -113,61 +132,16 @@
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp">
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border">
-
-                    <TextView
-                        android:id="@+id/network_tableName"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/border"
-                        android:text="@string/nom"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/network_tableDescription"
-                        android:layout_width="146dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/border"
-                        android:text="@string/desription"
-                        android:textStyle="italic" />
-
-                    <TextView
-                        android:id="@+id/network_tableStatut"
-                        android:layout_width="71dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/border"
-                        android:text="@string/statut" />
-
-                    <TextView
-                        android:id="@+id/network_tableNombre"
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/border"
-                        android:text="@string/people" />
-                </TableRow>
-
-            </TableLayout>
-
-            <ScrollView
+            <androidx.core.widget.NestedScrollView
                 android:id="@+id/scrollViewNetWorkAvailable"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_height="155dp"
+                android:layout_gravity="center"
                 android:layout_marginBottom="32dp">
 
                 <TableLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/tableLayout_network_available1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
 
@@ -176,30 +150,50 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/border">
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="80dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/border" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="146dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/border" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="71dp"
+                        <TextView
+                            android:id="@+id/network_tableName"
+                            android:layout_width="72dp"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/border" />
+                            android:fontFamily="sans-serif-condensed"
+                            android:gravity="center"
+                            android:text="@string/nom"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="bold" />
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="50dp"
+                        <TextView
+                            android:id="@+id/network_tableDescription"
+                            android:layout_width="153dp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/lightfade"
+                            android:fontFamily="sans-serif-condensed"
+                            android:gravity="center"
+                            android:text="@string/desription"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/network_tableStatut"
+                            android:layout_width="55dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed"
+                            android:gravity="center"
+                            android:text="@string/statut"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/network_tableNombre"
+                            android:layout_width="55dp"
                             android:layout_height="match_parent"
-                            android:background="@drawable/border" />
-
+                            android:background="@color/lightfade"
+                            android:fontFamily="sans-serif-condensed"
+                            android:gravity="center"
+                            android:text="@string/people"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
                     </TableRow>
 
                 </TableLayout>
-            </ScrollView>
+            </androidx.core.widget.NestedScrollView>
 
         </LinearLayout>
     </ScrollView>

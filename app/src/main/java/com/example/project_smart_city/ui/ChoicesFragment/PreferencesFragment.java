@@ -56,10 +56,10 @@ public class PreferencesFragment extends Fragment {
 
         // collect data about the user logged;
         if(Objects.requireNonNull(getActivity()).getLocalClassName().equals("MainActivity")){
-            userLogged = db.findHandler(MainActivity.getUser().getEmail());
+            userLogged = db.findUser(MainActivity.getUser().getEmail());
         }
         if (Objects.requireNonNull(getActivity().getLocalClassName().equals("InscriptionActivity"))){
-            userLogged = db.findHandler(InscriptionActivity.getUser().getEmail());
+            userLogged = db.findUser(InscriptionActivity.getUser().getEmail());
         }
 
         ArrayList<String> listInterests = new ArrayList<>();

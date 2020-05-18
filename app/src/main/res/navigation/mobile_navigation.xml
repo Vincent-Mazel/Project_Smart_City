@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_network"
-        android:name="com.example.project_smart_city.ui.NetworkFragment.NetworkFragment"
+        android:name="com.example.project_smart_city.ui.NetworkFragment.NetworkViewModel"
         android:label="@string/title_network"
-        tools:layout="@layout/fragment_network" />
+        tools:layout="@layout/empty_layout" />
     <fragment
         android:id="@+id/navigation_shopping"
         android:name="com.example.project_smart_city.ui.Shopping.ShoppingFragment"

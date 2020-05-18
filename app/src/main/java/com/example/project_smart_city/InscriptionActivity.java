@@ -155,13 +155,13 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                         int size = Integer.parseInt(text_size.getText().toString());
                         int weight = Integer.parseInt(text_weight.getText().toString());
 
-                        if(dbHandler.findHandler(email) == null){
+                        if(dbHandler.findUser(email) == null){
                             Bitmap icon = BitmapFactory.decodeResource(this.getResources(),R.drawable.profil);
                             byte[] data = DatabaseHandler.getByte(icon);
                             user = new User (pseudo,name,surname,email,sex,birthday,password,size,weight,data);
                             dbHandler.addUser(user);
                             dbHandler.updateProfilImg(user.getId(), user.getProfilPicture());
-                            user = dbHandler.findHandler(user.getEmail());
+                            user = dbHandler.findUser(user.getEmail());
                             return true;
                         }
                         else {

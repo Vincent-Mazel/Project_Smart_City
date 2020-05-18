@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         userLoged = (User)i.getSerializableExtra("UserLogin");
         DatabaseHandler db = new DatabaseHandler(getApplicationContext(), null, null, 1);
         db.getWritableDatabase();
-        userLoged = db.findHandler(userLoged.getEmail());
+        userLoged = db.findUser(userLoged.getEmail());
 
 
 

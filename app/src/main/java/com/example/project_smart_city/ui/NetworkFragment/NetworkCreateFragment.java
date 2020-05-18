@@ -13,14 +13,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 
+import com.example.project_smart_city.DatabaseHandler;
 import com.example.project_smart_city.MainActivity;
+import com.example.project_smart_city.Network;
 import com.example.project_smart_city.R;
+
+import java.util.Objects;
 
 public class NetworkCreateFragment extends Fragment {
 
-    private NetworkViewModel networkViewModel;
+
     private TextView network_name;
     private TextView network_description;
     private Boolean isPrivate;
@@ -30,8 +33,7 @@ public class NetworkCreateFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        networkViewModel =
-                ViewModelProviders.of(this).get(NetworkViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_createnetwork, container, false);
 
 
@@ -46,21 +48,37 @@ public class NetworkCreateFragment extends Fragment {
     public void createNetwork(){
         //* RECUPERATION DES INFO DU NEW NETWORK *\\
         network_name = MainActivity.getScrollView().findViewById(R.id.fragment_createNetwork_name);
-        String sNetwork_name = network_name.getText().toString(); // NAME
+
         network_description = MainActivity.getScrollView().findViewById(R.id.fragment_createNetwork_description);
-        String sNetwork_description = network_name.getText().toString(); // DESCRIPTION
+
         aSwitch = MainActivity.getScrollView().findViewById(R.id.fragment_createNetwork_SwitchStatut);
-        isPrivate = aSwitch.isChecked(); // STATUT
+        String status;
+        if(aSwitch.isChecked()){status = "Private";}
+        else {status = "Public";}                                                            // STATUS
+
+        String sNetwork_name = network_name.getText().toString();                            // NAME
+        String sNetwork_description = network_description.getText().toString();              // DESCRIPTION
+        int networkCreator = MainActivity.getUser().getId();                                 // Creator ID
 
         if(sNetwork_description.matches("") || sNetwork_name.matches("")){
             Toast.makeText(MainActivity.getScrollView().getContext(), "Please, fill required fields.", Toast.LENGTH_SHORT).show();
         }
         else{
-            ActualNetworkFragment newNetwork = new ActualNetworkFragment();
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_createNetwork, newNetwork).commit();
-            currentLayout.setVisibility(View.GONE);
-            // Need to add le tout à la BD + call le bon réseau social.
+            Network newNetwork = new Network(sNetwork_name,sNetwork_description, status, networkCreator);
+            DatabaseHandler db = new DatabaseHandler(getContext(), null, null, 1);
+            db.getWritableDatabase();
+            if(db.findNetwork(newNetwork.getName()) == null ){
+                db.addNetwork(newNetwork);
+                // call the new network;
+                ActualNetworkFragment actualNetworkFragment = new ActualNetworkFragment(db.findNetwork(newNetwork.getName()).getName());
+                FragmentTransaction transaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                transaction.remove(this);
+                transaction.replace(R.id.linearLayout_empty, actualNetworkFragment).addToBackStack(null).commit();
+            }
+            else {
+                Toast.makeText(MainActivity.getScrollView().getContext(), "This network already exists. Join it or create another one.", Toast.LENGTH_SHORT).show();
+            }
+            db.close();
         }
 
     }

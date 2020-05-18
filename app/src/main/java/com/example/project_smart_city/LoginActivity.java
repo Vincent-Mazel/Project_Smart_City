@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         DatabaseHandler databaseHandler = new DatabaseHandler(this, null, null, 1);
         User user = new User();
-        user = databaseHandler.findHandler(email);
+        user = databaseHandler.findUser(email);
         if(user == null){
             Toast.makeText(this, "Email not in database, Sign In !", Toast.LENGTH_SHORT).show();
         }

@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="90dp"
             android:orientation="vertical"
-            tools:visibility="gone">
+            tools:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -140,6 +140,7 @@
                             android:id="@+id/btn_deleteNetwork"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="74dp"
                             android:text="@string/delete_this_network" />
                     </LinearLayout>
 
@@ -161,19 +162,16 @@
 
                         <androidx.core.widget.NestedScrollView
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="187dp"
                             android:layout_margin="16dp"
                             android:fillViewport="true">
 
                             <LinearLayout
+                                android:id="@+id/scrollviewPendingRequests"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <ListView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-                            </LinearLayout>
+                                android:background="@drawable/border"
+                                android:orientation="vertical"/>
                         </androidx.core.widget.NestedScrollView>
                     </LinearLayout>
 

@@ -79,7 +79,7 @@ public class NetworkFragment extends Fragment {
                     TextView member = new TextView(getContext());
                     String[] members = networkList.get(i).get(6).toString().split(";");
 
-                    int k = members.length;
+                    int k = members.length /2;
                     member.setGravity(Gravity.CENTER);
                     member.setBackgroundResource(R.color.lightfade);
                     member.setWidth((int) px);

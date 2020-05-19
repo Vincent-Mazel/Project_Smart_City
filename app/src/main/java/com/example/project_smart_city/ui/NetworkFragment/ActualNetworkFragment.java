@@ -1,6 +1,7 @@
 package com.example.project_smart_city.ui.NetworkFragment;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,15 +16,19 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.project_smart_city.DatabaseHandler;
 import com.example.project_smart_city.MainActivity;
 import com.example.project_smart_city.Network;
 import com.example.project_smart_city.R;
+import com.example.project_smart_city.User;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 public class ActualNetworkFragment extends Fragment {
@@ -50,7 +55,7 @@ public class ActualNetworkFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         db = new DatabaseHandler(getContext(), null, null, 1);
         db.getWritableDatabase();
-        network = db.findNetwork(name);
+        this.network = db.findNetwork(name);
         db.close();
 
         View root = inflater.inflate(R.layout.fragment_actualnetwork, container, false);
@@ -76,10 +81,108 @@ public class ActualNetworkFragment extends Fragment {
                 db.close();
                 creator.setText(sCreator);
                 Button btn_delete = root.findViewById(R.id.btn_deleteNetwork);
-                btn_delete.setOnClickListener(view1 -> {
-                    // call delete network and go to network page 1;
-                    Objects.requireNonNull(getActivity()).onBackPressed();
-                });
+                LinearLayout linearLayout = root.findViewById(R.id.scrollviewPendingRequests);
+
+                if(network.getListRequest() != null){
+                    String[] sRequests = network.getListRequest().split(";;");
+
+                    for(int i = 0; i<sRequests.length;++i){
+                        float density = Objects.requireNonNull(getContext()).getResources().getDisplayMetrics().density;
+                        float px = 150 * density;
+                        LinearLayout linearLayout1 = new LinearLayout(getContext());
+                        linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
+                        linearLayout1.setBackgroundResource(R.drawable.border);
+                        LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        linearLayout1.setLayoutParams(lp1);
+                        sRequests[i] = sRequests[i].replace(";", "");
+                        User user = db.findUserById(Integer.parseInt(sRequests[i]));
+                        TextView pseudo = new TextView(getContext());
+                        pseudo.setText(user.getPseudo());
+                        pseudo.setWidth((int) px);
+                        pseudo.setPadding(4,0,0,0);
+                        TextView age = new TextView(getContext());
+                        String birthYEAR = user.getBirthday().substring(5);
+                        int actualDate = new Date().getYear() + 1900;
+                        int intAge = actualDate - Integer.parseInt(birthYEAR);
+                        age.setText(intAge + " y.o");
+                        px = 60 * density;
+                        age.setWidth((int) px);
+                        ImageView sexe = new ImageView(getContext());
+                        if(user.getSexe().equals("Male")){
+                            sexe.setImageResource(R.drawable.logo_homme);
+                        }
+                        else if (user.getSexe().equals("Female")){
+                            sexe.setImageResource(R.drawable.logo_femme);
+                        }
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(16*(int) density, LinearLayout.LayoutParams.MATCH_PARENT);
+                        sexe.setLayoutParams(lp);
+                        linearLayout1.addView(pseudo);
+                        linearLayout1.addView(age);
+                        linearLayout1.addView(sexe);
+                        linearLayout.addView(linearLayout1);
+                        int finalI = i;
+                        linearLayout1.setOnClickListener(view12 -> {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Add " + pseudo.getText().toString() + " to " + network.getName());
+                            builder.setMessage("Do you want to add " + pseudo.getText().toString() + " to the network ?\n He will be able to post here and to see each post from other member.");
+                            builder.setPositiveButton("Yes", (dialogInterface, i15) -> {
+                                network.removeRequest(sRequests[finalI]);
+                                db.updateNetwork(network);
+                                Toast.makeText(getContext(), pseudo.getText().toString() + " is now a member of " + network.getName(), Toast.LENGTH_SHORT).show();
+
+                                ActualNetworkFragment actualNetworkFragment = new ActualNetworkFragment(network.getName());
+                                FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
+                                FragmentTransaction transaction = fm.beginTransaction();
+                                transaction.remove(this);
+                                transaction.replace(R.id.linearLayout_empty, actualNetworkFragment).addToBackStack(null).commit();
+                            });
+                            builder.setNegativeButton("Later", (dialogInterface, i16) -> dialogInterface.cancel());
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+                        });
+                    }
+                }
+
+                if(sCreator.equals(MainActivity.getUser().getPseudo())){
+                    btn_delete.setText(R.string.delete_network);
+                    btn_delete.setOnClickListener(view1 -> {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("Delete " + network.getName());
+                        builder.setMessage("You are about to delete your network. Are you sur about that ? ");
+                        builder.setPositiveButton("Yes", (dialogInterface, i13) -> {
+                            db.deleteNetwork(network.getId());
+                            NetworkFragment networkFragment = new NetworkFragment();
+                            FragmentTransaction transaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                            transaction.remove(this);
+                            transaction.replace(R.id.linearLayout_empty, networkFragment).addToBackStack(null).commit();
+                        });
+                        builder.setNegativeButton("No", (dialogInterface, i14) -> dialogInterface.cancel());
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
+
+                    });
+                }
+                else {
+                    btn_delete.setText(R.string.leave_network);
+                    btn_delete.setOnClickListener(view1 -> {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("Leave " + network.getName());
+                        builder.setMessage("You are about to leave " + network.getName() + " .\nAre you sur about that ? ");
+                        builder.setPositiveButton("Yes", (dialogInterface, i13) -> {
+                            network.removeMember(Integer.toString(MainActivity.getUser().getId()));
+                            db.updateNetwork(network);
+                            NetworkFragment networkFragment = new NetworkFragment();
+                            FragmentTransaction transaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                            transaction.remove(this);
+                            transaction.replace(R.id.linearLayout_empty, networkFragment).addToBackStack(null).commit();
+                        });
+                        builder.setNegativeButton("No", (dialogInterface, i14) -> dialogInterface.cancel());
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
+
+                    });
+                }
+
             }
             else {
                 closeMenu();

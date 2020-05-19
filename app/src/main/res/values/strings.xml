@@ -55,4 +55,6 @@
     <string name="what_would_you_like_to_share_with_us_today">What would you like to share with us today ?</string>
     <string name="post">Post</string>
     <string name="menu_network">menu_network</string>
+    <string name="delete_network">Delete this network</string>
+    <string name="leave_network">Leave this network</string>
 </resources>

@@ -247,6 +247,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return result;
     }
 
+    public void deleteNetwork(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete( TABLE_NETWORK,NETWORK_ID + "=" + id,null);
+        db.close();
+    }
 
     public void updateProfilImg(int id , byte[] img ) {
             SQLiteDatabase db = this.getWritableDatabase();

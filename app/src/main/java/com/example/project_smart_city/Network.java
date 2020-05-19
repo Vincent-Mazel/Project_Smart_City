@@ -83,7 +83,7 @@ public class Network {
     }
 
     public void removeMember(String memberToRemove){
-        this.listMembers = listRequest.replace(";" + memberToRemove +";","");
+        this.listMembers = listMembers.replace(";" + memberToRemove +";","");
     }
 
     public void removeRequest(String requesToRemove){this.listRequest = listRequest.replace(";" + requesToRemove + ";", "");}

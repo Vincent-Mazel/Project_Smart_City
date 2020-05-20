@@ -66,20 +66,18 @@ public class Network {
     }
 
     public Boolean addRequestToList(String member) {
-        if(listRequest.contains(";" + member + ";")){
-            return false;
+        if(listRequest == null){
+            this.listRequest = ";" + member + ";";
         }
-        else{
-            if(listRequest == null){
-                this.listRequest = ";" + member + ",";
+        else {
+            if(listRequest.contains(";" + member + ";")){
+                return false;
             }
             else {
                 this.listRequest += ";" + member +";";
             }
-            return true;
         }
-
-
+        return true;
     }
 
     public void removeMember(String memberToRemove){

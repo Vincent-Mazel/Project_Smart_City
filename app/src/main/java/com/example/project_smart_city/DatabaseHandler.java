@@ -23,9 +23,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_USER = "USER";
     private static final String TABLE_NETWORK = "NETWORK";
     private static final String TABLE_SHOP = "SHOP";
+    private static final String TABLE_POST="POST";
 
     //TABLE FIELDS
-    //NETWORK
+
+    // POST
+    private static final String POST_ID = "ID";
+    private static final String POST_NETWORK = "POST_NETWORK";
+    private static final String POST_AUTHOR = "AUTHOR";
+    private static final String DATE = "DATE";
+    private static final String DATA = "DATA";
+
+
+    // NETWORK
     private static final String NETWORK_ID = "ID";
     private static final String NETWORK_NAME = "NAME";
     private static final String NETWORK_DESCRIPTION = "DESCRIPTION";
@@ -66,9 +76,48 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // creation network table;
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NETWORK + " ( " + NETWORK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + NETWORK_NAME + " TEXT, " + NETWORK_DESCRIPTION + " TEXT, "+
                 NETWORK_STATUS + " TEXT, " + NETWORK_CREATOR + " INTEGER, " + NETWORK_REQUEST + " BLOP, " + NETWORK_MEMBERS + " BLOP)" );
+        // creation post table
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_POST + " ( " + POST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + POST_NETWORK + " INTEGER, " + POST_AUTHOR + " INTEGER, " + DATA + " TEXT, " + DATE + " TEXT )" );
+
 
     }
 
+    public ArrayList<Post> loadPost(int idNetwork){
+        ArrayList<Post> arrayList = new ArrayList<>();
+        String qry = "SELECT * FROM " + TABLE_POST + " WHERE " + POST_NETWORK + "=" + idNetwork;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(qry, null);
+        while(cursor.moveToNext()){
+            Post post = new Post();
+            post.setId(Integer.parseInt(cursor.getString(0)));
+            post.setNetwork_id(Integer.parseInt(cursor.getString(1)));
+            post.setAuthor_id(Integer.parseInt(cursor.getString(2)));
+            post.setData(cursor.getString(3));
+            post.setDate(cursor.getString(4));
+            arrayList.add(post);
+        }
+        cursor.close();
+        db.close();
+        return arrayList;
+    }
+
+    public void addPost(Post post) {
+        ContentValues values = new ContentValues();
+        values.put(POST_AUTHOR, post.getAuthor_id());
+        values.put(DATA, post.getData());
+        values.put(DATE, post.getDate());
+        values.put(POST_NETWORK, post.getNetwork_id());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_POST, null, values);
+        db.close();
+    }
+
+    public void deletePost(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_POST, POST_ID + '=' + id,null);
+        db.close();
+    }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
     }
@@ -89,7 +138,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             list.add(cursor.getString(5));      // requests
             list.add(cursor.getString(6));      // members
             arrayList.add(list);
-
         }
         cursor.close();
         db.close();

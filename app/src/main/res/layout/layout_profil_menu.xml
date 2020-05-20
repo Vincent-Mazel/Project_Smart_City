@@ -25,10 +25,11 @@
 
             <ImageView
                 android:id="@+id/FADE"
-                android:layout_width="181dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorAccentDark"
+                android:contentDescription="@string/fade"
                 app:srcCompat="@color/colorAccentDark" />
 
             <LinearLayout
@@ -57,6 +58,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/profilpicture"
                             android:scaleType="fitCenter" />
 
                     </com.google.android.material.card.MaterialCardView>
@@ -71,7 +73,7 @@
                     android:layout_gravity="center"
                     android:foregroundGravity="center"
                     android:gravity="center"
-                    android:text="Tapoter sur l'image pour changer"
+                    android:text="@string/tap_the_image_to_change_it"
                     android:textColor="@color/colorAccent" />
 
                 <View
@@ -90,8 +92,7 @@
                     android:layout_gravity="right"
                     android:layout_marginTop="32dp"
                     android:layout_marginRight="32dp"
-                    android:text="Prénom"
-                    />
+                    android:text="@string/name" />
 
                 <TextView
                     android:id="@+id/profil_nom"
@@ -100,8 +101,7 @@
                     android:layout_gravity="right"
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="32dp"
-                    android:text="Nom"
-                    />
+                    android:text="@string/nom" />
 
                 <TextView
                     android:id="@+id/profil_sexe"
@@ -110,7 +110,7 @@
                     android:layout_gravity="right"
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="32dp"
-                    android:text="Sexe"
+                    android:text="@string/sexe"
                      />
 
                 <View
@@ -129,6 +129,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/border"
                     android:baselineAlignBottom="false"
+                    android:contentDescription="@string/manageinterest"
                     android:textAlignment="center"
                     app:srcCompat="@android:drawable/btn_star_big_off" />
 
@@ -138,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="right"
-                    android:text="Gérer vos préférences" />
+                    android:text="@string/g_rer_vos_pr_f_rences" />
 
                 <Button
                     android:id="@+id/logout_btn"
@@ -147,7 +148,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="32dip"
                     android:onClick="logOut"
-                    android:text="LogOut" />
+                    android:text="@string/logout" />
 
             </LinearLayout>
         </LinearLayout>

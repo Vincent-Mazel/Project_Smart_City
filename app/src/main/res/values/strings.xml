@@ -4,10 +4,9 @@
     <string name="bottom_navigation_menu_home">Home</string>
     <string name="bottom_navigation_menu_commerce">Shopping</string>
     <string name="bottom_navigation_menu_network">Networks</string>
-    <string name="bottom_navigation_menu_profil">Profil</string>
-    <string name="Lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</string>
+    <string name="bottom_navigation_menu_profil">Profile</string>
     <string name="title_news">News</string>
-    <string name="title_profil">Profil</string>
+    <string name="title_profil">Profile</string>
     <string name="title_network">Network</string>
     <string name="title_shopping">Shopping</string>
     <string name="email">Email</string>
@@ -41,13 +40,13 @@
     <string name="enregistrer_ces_changements">Save these changes</string>
     <string name="poids">Weight</string>
     <string name="taille">Size</string>
-    <string name="gerer_vos_pref">Manage your preferences</string>
+    <string name="gerer_vos_pref">Manage your choices</string>
     <string name="intro_change">You can change them whenever you want</string>
     <string name="makeChoices">Make your choices</string>
-    <string name="saveInterests">Sauvergarder ces préférences</string>
-    <string name="save_and_SignIn"><![CDATA[Sauvegarder & entrer dans SmartCity]]></string>
+    <string name="saveInterests">Save your interests</string>
+    <string name="save_and_SignIn"><![CDATA[Save & join Smart City !]]></string>
     <string name="interests">Interests</string>
-    <string name="you_can_change_int">You can change your interest whenever you want to.</string>
+    <string name="you_can_change_int">You can change your interests whenever you want to.</string>
     <string name="by_local">By localisation</string>
     <string name="alphabetical">Alphabetical</string>
     <string name="delete_this_network">Delete this Network</string>
@@ -57,4 +56,11 @@
     <string name="menu_network">menu_network</string>
     <string name="delete_network">Delete this network</string>
     <string name="leave_network">Leave this network</string>
+    <string name="sexe">Sex</string>
+    <string name="g_rer_vos_pr_f_rences">Manage you interests</string>
+    <string name="tap_the_image_to_change_it">Tap the image to change it</string>
+    <string name="profilpicture">profilePicture</string>
+    <string name="logout">LogOut</string>
+    <string name="fade">fade</string>
+    <string name="manageinterest">manageInterest</string>
 </resources>

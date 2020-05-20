@@ -65,6 +65,7 @@ public class NetworkCreateFragment extends Fragment {
         }
         else{
             Network newNetwork = new Network(sNetwork_name,sNetwork_description, status, networkCreator);
+            newNetwork.setListMembers(";" + networkCreator +";");
             DatabaseHandler db = new DatabaseHandler(getContext(), null, null, 1);
             db.getWritableDatabase();
             if(db.findNetwork(newNetwork.getName()) == null ){

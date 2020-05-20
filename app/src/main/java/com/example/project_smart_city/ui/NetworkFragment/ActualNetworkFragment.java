@@ -22,11 +22,13 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.project_smart_city.DatabaseHandler;
 import com.example.project_smart_city.MainActivity;
 import com.example.project_smart_city.Network;
+import com.example.project_smart_city.Post;
 import com.example.project_smart_city.R;
 import com.example.project_smart_city.User;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -36,7 +38,6 @@ public class ActualNetworkFragment extends Fragment {
     private TextView msgToPost;
     private Button btnPost;
     private LinearLayout posts;
-    private String author;
     private ViewGroup menu;
     private Boolean isMenuOpen;
     private FrameLayout main;
@@ -66,6 +67,9 @@ public class ActualNetworkFragment extends Fragment {
         networkName.setText(network.getName());
 
 
+        this.posts = root.findViewById(R.id.fragment_actualNetwork_linearViewPosts);
+        // LOAD POST
+        loadPost();
 
 
         ImageView menuImage = root.findViewById(R.id.fragment_actualNetwork_menu);
@@ -192,13 +196,39 @@ public class ActualNetworkFragment extends Fragment {
         description.setText(network.getDescription());
 
 
-        this.author = MainActivity.getUser().getPseudo();
         this.btnPost = root.findViewById(R.id.fragment_actualNetwork_BtnPost);
         btnPost.setOnClickListener(view -> postMsg());
 
-        this.posts = root.findViewById(R.id.fragment_actualNetwork_linearViewPosts);
+
+        System.out.println(posts);
 
         return root;
+    }
+
+    public void loadPost(){
+        ArrayList<Post> arrayList = db.loadPost(network.getId());
+        for(int i=0; i<arrayList.size();++i){
+            Post post = arrayList.get(i);
+            User uAuthor = db.findUserById(post.getAuthor_id());
+
+            LayoutInflater newView = (LayoutInflater) Objects.requireNonNull(this.getContext()).getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert newView != null;
+            @SuppressLint("InflateParams") View v = newView.inflate(R.layout.layout_posts, null);
+
+            TextView thePost = v.findViewById(R.id.post_actualPost);
+            TextView author = v.findViewById(R.id.post_author);
+            TextView date = v.findViewById(R.id.post_date);
+            ImageView authorsProfilPicture = v.findViewById(R.id.post_pictureAuthor);
+
+
+            authorsProfilPicture.setImageBitmap(db.getProfilPicture(uAuthor.getId()));
+            thePost.setText(post.getData());
+            author.setText(uAuthor.getPseudo());
+            date.setText(post.getDate());
+
+            posts.addView(v, 0, new ViewGroup.LayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)));
+        }
+
     }
 
     public void postMsg(){
@@ -209,12 +239,17 @@ public class ActualNetworkFragment extends Fragment {
         }
         else {
 
-            LayoutInflater newView = (LayoutInflater) this.getContext().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View v = newView.inflate(R.layout.layout_posts, null);
+            LayoutInflater newView = (LayoutInflater) Objects.requireNonNull(this.getContext()).getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert newView != null;
+            @SuppressLint("InflateParams") View v = newView.inflate(R.layout.layout_posts, null);
 
             TextView thePost = v.findViewById(R.id.post_actualPost);
             TextView author = v.findViewById(R.id.post_author);
             TextView date = v.findViewById(R.id.post_date);
+            ImageView authorsProfilPicture = v.findViewById(R.id.post_pictureAuthor);
+
+
+            authorsProfilPicture.setImageBitmap(db.getProfilPicture(MainActivity.getUser().getId()));
 
             thePost.setText(msgToPost.getText().toString());
             author.setText(MainActivity.getUser().getPseudo()); // need to change w/ actual author.
@@ -223,11 +258,25 @@ public class ActualNetworkFragment extends Fragment {
 
 
             posts.addView(v, 0, new ViewGroup.LayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)));
+
+            // add to DB;
+            Post post = new Post(MainActivity.getUser().getId(),network.getId(),df.format(Calendar.getInstance().getTime()),msgToPost.getText().toString());
+            db.addPost(post);
             msgToPost.setText(null);
         }
 
 
 
+
+    }
+
+    public void deletePost(int idPost){
+        db.deleteNetwork(idPost);
+        ActualNetworkFragment actualNetworkFragment = new ActualNetworkFragment(network.getName());
+        FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.remove(this);
+        transaction.replace(R.id.linearLayout_empty, actualNetworkFragment).addToBackStack(null).commit();
 
     }
 

@@ -23,9 +23,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_USER = "USER";
     private static final String TABLE_NETWORK = "NETWORK";
     private static final String TABLE_SHOP = "SHOP";
+    private static final String TABLE_OFFER="OFFER";
     private static final String TABLE_POST="POST";
 
     //TABLE FIELDS
+
+    // SHOP
+    private static final String SHOP_id="ID";
+    private static final String SHOP_NAME="NAME";
+    private static final String SHOP_LATITUDE="LATITUDE";
+    private static final String SHOP_LONGITUDE="LONGITUDE";
+    private static final String SHOP_DESCRIPTION="DESCRIPTION";
+    private static final String SHOP_PICTURE="IMAGE";
+    private static final String SHOP_OFFERS="OFFERS";
+    private static final String SHOP_SECTOR="SECTOR";
+
+
+    // OFFER
+    private static final String OFFER_ID="ID";
+    private static final String OFFER_DESCRIPTION="DESCRIPTION";
+    private static final String OFFER_PICTURE="IMAGE";
+    private static final String OFFER_NAME="OFFER";
+    private static final String OFFER_PRICE="PRICE";
+    private static final String OFFER_SHOP_ID = "SHOP_ID";
 
     // POST
     private static final String POST_ID = "ID";
@@ -79,7 +99,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // creation post table
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_POST + " ( " + POST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + POST_NETWORK + " INTEGER, " + POST_AUTHOR + " INTEGER, " + DATA + " TEXT, " + DATE + " TEXT )" );
 
+        Shop nike = new Shop(43.978917,4.888941,"Nike","Nike's shop @ Avignon. Just do it !","Sport;Clothes");
+        Shop ikea = new Shop (43.61092,3.87723,"Ikea", "The wonderful everywhere", "Well Being;");
+        Shop Geant = new Shop (43.610201,3.852733,"Geant Casino", "Les prix bas, c'est chez Géant !", "Food");
+        Shop louisVuitton = new Shop(48.871657,2.300555,"Louis Vuitton", "Maroquinerie et bagages au monogramme emblématique et collections de mode chics pour cette enseigne de luxe.","Lux;Clothes");
 
+
+    }
+
+    public void addShop(Shop shop){
+        ContentValues values = new ContentValues();
+        values.put(SHOP_DESCRIPTION,shop.getDescription());
+        values.put(SHOP_LATITUDE, shop.getLatitude());
+        values.put(SHOP_LONGITUDE, shop.getLongitude());
+        values.put(SHOP_PICTURE, shop.getPicture());
+        values.put(SHOP_SECTOR, shop.getSector());
+        values.put(SHOP_NAME, shop.getName());
+        ArrayList<Offer> arrayList = shop.getOffers();
+        String offers = "";
+        for(int i =0; i<arrayList.size();++i){
+            offers += arrayList.get(i).getId() + ";";
+        }
+        values.put(SHOP_OFFERS, offers);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_SHOP,null,values);
+        db.close();
     }
 
     public ArrayList<Post> loadPost(int idNetwork){
@@ -158,7 +202,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         database.close();
         return result;
     }
-
 
     public void addNetwork(Network network) {
         ContentValues values = new ContentValues();

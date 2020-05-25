@@ -67,7 +67,6 @@ public class PreferencesFragment extends Fragment {
         listInterests.add("Traffic");
         listInterests.add("Calendar");
         listInterests.add("Alarm");
-        listInterests.add("Animation");
 
         for(int i = 0; i< listInterests.size(); ++i){
             LayoutInflater newView = (LayoutInflater) Objects.requireNonNull(this.getContext()).getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

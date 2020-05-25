@@ -24,47 +24,50 @@
         android:layout_margin="8dp"
         android:background="@color/colorPrimary" />
 
-    <TextView
-        android:id="@+id/textView17"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="vos actualités"
-        android:textAlignment="center" />
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundText">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="200dip"
-        android:layout_margin="8dip">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="475dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="78dp">
 
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/lightfade"
+                android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="100dip"
-        android:layout_margin="8dip">
+                <TextView
+                    android:id="@+id/HB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:id="@+id/inflator"
+                    android:layout_width="match_parent"
+                    android:layout_height="431dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="300dip"
-        android:layout_margin="8dip">
+                    <View
+                        android:id="@+id/divider12"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider" />
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
 
 </LinearLayout>

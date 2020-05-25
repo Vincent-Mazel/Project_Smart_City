@@ -1,5 +1,6 @@
 package com.example.project_smart_city;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static NavigationView navigationView;
     private static NavigationView navigationViewFade;
     private static User userLoged;
+    private static Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        mContext = getApplicationContext();
         scrollView = findViewById(R.id.scroll_main);
         Intent i = getIntent();
         userLoged = (User)i.getSerializableExtra("UserLogin");
@@ -100,7 +103,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public static User getUser(){
-        return userLoged;
+        DatabaseHandler db = new DatabaseHandler(mContext, null, null, 1);
+        db.getWritableDatabase();
+        return db.findUser(userLoged.getEmail());
     }
 
 

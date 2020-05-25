@@ -63,4 +63,10 @@
     <string name="logout">LogOut</string>
     <string name="fade">fade</string>
     <string name="manageinterest">manageInterest</string>
+    <string name="shops_avalaible">Shops available</string>
+    <string name="annuaire">Annuaire</string>
+    <string name="recherche">Searching</string>
+    <string name="air_max_tn_raint_90">Air Max TN, RaiNté 90</string>
+    <string name="un_petit_peu_de_text_pour_d_crire_ce_magnifique_produit">Un petit peu de text pour décrire ce magnifique produit</string>
+    <string name="_99_99">99,99 €</string>
 </resources>

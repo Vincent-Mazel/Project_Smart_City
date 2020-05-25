@@ -19,7 +19,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME="SmartCity.db";
 
-    //TABLE NAME
+    // TABLES NAME
     private static final String TABLE_USER = "USER";
     private static final String TABLE_NETWORK = "NETWORK";
     private static final String TABLE_SHOP = "SHOP";
@@ -98,13 +98,88 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 NETWORK_STATUS + " TEXT, " + NETWORK_CREATOR + " INTEGER, " + NETWORK_REQUEST + " BLOP, " + NETWORK_MEMBERS + " BLOP)" );
         // creation post table
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_POST + " ( " + POST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + POST_NETWORK + " INTEGER, " + POST_AUTHOR + " INTEGER, " + DATA + " TEXT, " + DATE + " TEXT )" );
+        // creation shop table
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_SHOP + " ( " + SHOP_id + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + SHOP_NAME + " TEXT, " + SHOP_DESCRIPTION + " TEXT, " + SHOP_LATITUDE + " INTEGER, " +
+                SHOP_LONGITUDE +" INTEGER, " + SHOP_SECTOR + " TEXT, " + SHOP_PICTURE + " BLOB, " + SHOP_OFFERS + " TEXT)");
 
-        Shop nike = new Shop(43.978917,4.888941,"Nike","Nike's shop @ Avignon. Just do it !","Sport;Clothes");
-        Shop ikea = new Shop (43.61092,3.87723,"Ikea", "The wonderful everywhere", "Well Being;");
-        Shop Geant = new Shop (43.610201,3.852733,"Geant Casino", "Les prix bas, c'est chez Géant !", "Food");
-        Shop louisVuitton = new Shop(48.871657,2.300555,"Louis Vuitton", "Maroquinerie et bagages au monogramme emblématique et collections de mode chics pour cette enseigne de luxe.","Lux;Clothes");
+        // creation offer table
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_OFFER + " ( " + OFFER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " + OFFER_NAME + " TEXT, " + OFFER_DESCRIPTION + " TEXT, " + OFFER_PRICE + " INTEGER, " +
+                OFFER_SHOP_ID + " TEXT, " + OFFER_PICTURE + " BLOB)");
+    }
 
 
+    public ArrayList<Shop> loadShop(){
+        ArrayList<Shop> arrayList = new ArrayList<>();
+        String qry = "SELECT * FROM " + TABLE_SHOP +" ORDER BY " + SHOP_NAME;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(qry, null);
+        while(cursor.moveToNext()){
+            Shop shop = new Shop();
+            shop.setId(cursor.getInt(0));
+            shop.setName(cursor.getString(1));
+            shop.setDescription(cursor.getString(2));
+            shop.setLatitude(cursor.getDouble(3));
+            shop.setLongitude(cursor.getDouble(4));
+            shop.setSector(cursor.getString(5));
+            shop.setPicture(cursor.getBlob(6));
+            arrayList.add(shop);
+        }
+        cursor.close();
+        db.close();
+        return arrayList;
+    }
+
+    public ArrayList<Offer> loadOfferByShop(int id_shop){
+        ArrayList<Offer> arrayList = new ArrayList<>();
+        String qry = "SELECT * FROM " + TABLE_OFFER + " WHERE " + OFFER_SHOP_ID + "=" + id_shop;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(qry, null);
+        while(cursor.moveToNext()){
+            Offer offer = new Offer();
+            offer.setId(cursor.getInt(0));
+            offer.setName(cursor.getString(1));
+            offer.setDescription(cursor.getString(2));
+            offer.setPrice(cursor.getDouble(3));
+            offer.setShop_id(cursor.getInt(4));
+            offer.setPicture(cursor.getBlob(5));
+            arrayList.add(offer);
+        }
+        cursor.close();
+        db.close();
+        return arrayList;
+    }
+
+    public void addOffer(Offer offer){
+        ContentValues arg = new ContentValues();
+        arg.put(OFFER_NAME, offer.getName());
+        arg.put(OFFER_DESCRIPTION, offer.getDescription());
+        arg.put(OFFER_PRICE, offer.getPrice());
+        arg.put(OFFER_SHOP_ID, offer.getShop_id());
+        arg.put(OFFER_PICTURE, offer.getPicture());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_OFFER,null,arg);
+        db.close();
+    }
+
+    public Shop findShop(String str){
+        String query = "SELECT * FROM " + TABLE_SHOP + " WHERE " + SHOP_NAME + " = " + "'" + str + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        Shop shop = new Shop();
+        if(cursor.moveToFirst()){
+            cursor.moveToFirst();
+            shop.setId(Integer.parseInt(cursor.getString(0)));
+            shop.setName(cursor.getString(1));
+            shop.setDescription((cursor.getString(2)));
+            shop.setLatitude(cursor.getDouble(3));
+            shop.setLongitude(cursor.getDouble(4));
+            shop.setSector(cursor.getString(5));
+        }
+        else {
+            shop = null;
+        }
+        db.close();
+        return shop;
     }
 
     public void addShop(Shop shop){
@@ -117,14 +192,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(SHOP_NAME, shop.getName());
         ArrayList<Offer> arrayList = shop.getOffers();
         String offers = "";
-        for(int i =0; i<arrayList.size();++i){
-            offers += arrayList.get(i).getId() + ";";
+        if(arrayList != null){
+            for(int i =0; i<arrayList.size();++i){
+                offers += arrayList.get(i).getId() + ";";
+            }
+            values.put(SHOP_OFFERS, offers);
         }
-        values.put(SHOP_OFFERS, offers);
+
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_SHOP,null,values);
         db.close();
     }
+
 
     public ArrayList<Post> loadPost(int idNetwork){
         ArrayList<Post> arrayList = new ArrayList<>();

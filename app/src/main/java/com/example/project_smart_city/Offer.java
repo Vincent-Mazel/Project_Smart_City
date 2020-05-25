@@ -8,9 +8,10 @@ public class Offer {
     private double price;
     private String description;
 
-    public Offer(String name, int shop_id, double price, String description) {
+    public Offer(){}
+
+    public Offer(String name, double price, String description) {
         this.name = name;
-        this.shop_id = shop_id;
         this.price = price;
         this.description = description;
     }

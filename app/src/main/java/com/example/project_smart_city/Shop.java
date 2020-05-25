@@ -8,8 +8,9 @@ public class Shop {
     private String name;
     private String description;
     private byte[] picture;
-    private ArrayList<Offer> offers;
+    private ArrayList<Offer> offers = new ArrayList<>();
     private String sector;
+    private long distance;
 
     public String getSector() {
         return sector;
@@ -20,8 +21,11 @@ public class Shop {
     }
 
     public void addOffer(Offer offer){
-        this.offers.add(offer);
+            this.offers.add(offer);
+
     }
+
+    public Shop(){}
 
     public Shop(double latitude, double longitude, String name, String description, String sector) {
         this.latitude = latitude;
@@ -85,5 +89,13 @@ public class Shop {
 
     public void setOffers(ArrayList<Offer> offers) {
         this.offers = offers;
+    }
+
+    public long getDistance() {
+        return distance;
+    }
+
+    public void setDistance(long distance) {
+        this.distance = distance;
     }
 }

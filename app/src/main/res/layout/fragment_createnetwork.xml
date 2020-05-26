@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_createNetwork"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/fragment_LinearPageTwo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_createNetwork"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:text="@string/create_network"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/design_default_color_primary_dark" />
+
+        <View
+            android:id="@+id/divider7"
+            android:layout_width="78dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary" />
+
+        <EditText
+            android:id="@+id/fragment_createNetwork_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:ems="10"
+            android:hint="@string/network_name"
+            android:inputType="textPersonName"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/fragment_createNetwork_description"
+            android:layout_width="match_parent"
+            android:layout_height="103dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/network_description"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:maxLines="6"
+            android:minLines="4"
+            android:scrollbars="vertical"
+            android:autofillHints="" />
+
+        <TextView
+            android:id="@+id/fragment_createNetwork_StatutText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/arya"
+            android:text="@string/statut"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dip"
+            android:layout_marginEnd="100dip"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_createNetwork_public"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/public1"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <Switch
+                android:id="@+id/fragment_createNetwork_SwitchStatut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/fragment_createNetwork_private"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/private1"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/fragment_createNetworkBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="28dip"
+            android:background="@drawable/border"
+            android:fontFamily="monospace"
+            android:text="@string/create"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

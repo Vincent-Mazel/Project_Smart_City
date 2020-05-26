@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_profil"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dip"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollProfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tilte_profil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/bottom_navigation_menu_profil"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHighlight="@color/design_default_color_primary_dark" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="78dp"
+                    android:layout_height="3dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dip"
+                    android:background="@color/colorPrimary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dip"
+                        android:layout_marginTop="16dip"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/text_pseudo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dip"
+                            android:autofillHints=""
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:text="@string/pseudo" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:id="@+id/text_poids"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="0dip"
+                                android:layout_marginStart="2dip"
+                                android:autofillHints=""
+                                android:ems="10"
+                                android:inputType="numberDecimal"
+                                android:text="@string/poids" />
+
+                            <TextView
+                                android:id="@+id/hintfont_style"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="end"
+                                android:gravity="center"
+                                android:hint="(kg)"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:id="@+id/text_taille"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:autofillHints=""
+                                android:ems="10"
+                                android:inputType="numberDecimal"
+                                android:text="@string/taille" />
+
+                            <TextView
+                                android:id="@+id/hintfont_style2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="end"
+                                android:gravity="center"
+                                android:hint="(cm)"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        </FrameLayout>
+
+                        <EditText
+                            android:id="@+id/text_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autofillHints=""
+                            android:ems="10"
+                            android:inputType="textEmailAddress"
+                            android:text="@string/current_adr_mail" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/colorAccent"
+                        app:cardBackgroundColor="@color/colorBackgroundText"
+                        app:cardCornerRadius="10dp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="140dp"
+                            android:layout_height="140dp"
+                            android:layout_gravity="center">
+
+                            <ImageView
+                                android:id="@+id/fragmentProfil_profilPicture"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:scaleType="fitCenter" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/gererPreference"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="64dip"
+                    android:background="@android:drawable/ic_menu_manage"
+                    android:baselineAlignBottom="false"
+                    android:textAlignment="center"
+                    app:srcCompat="@android:drawable/ic_menu_manage" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dip"
+                    android:text="@string/gerer_vos_pref"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/profil_btnSaveChange"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="64dip"
+                    android:onClick="onClickBot"
+                    android:text="@string/enregistrer_ces_changements" />
+
+            </LinearLayout>
+
+            <include
+                android:id="@+id/frag_prof_menu"
+                layout="@layout/layout_profil_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                tools:visibility="gone" />
+        </FrameLayout>
+    </ScrollView>
+
+
+</LinearLayout>

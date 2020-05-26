@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout_actualNetwork"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/frag_news_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title_actualNetwork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/design_default_color_primary_dark" />
+
+        <ImageView
+            android:id="@+id/fragment_actualNetwork_menu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:contentDescription="@string/menu_network"
+            app:srcCompat="@drawable/ic_menu_black_24dp" />
+
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="78dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="56dp"
+            android:background="@color/colorPrimary"
+            android:foregroundGravity="center" />
+
+        <TextView
+            android:id="@+id/actualNetwork_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:textAlignment="center"
+            android:textStyle="italic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="78dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/fragment_actualNetwork_PostingMsg"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:layout_margin="16dp">
+
+                <EditText
+                    android:id="@+id/fragment_actualNetwork_msgToPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="87dp"
+                    android:ems="10"
+                    android:hint="@string/what_would_you_like_to_share_with_us_today"
+                    android:inputType="textLongMessage|textAutoCorrect|textMultiLine"
+                    android:autofillHints="" />
+
+                <Button
+                    android:id="@+id/fragment_actualNetwork_BtnPost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:background="@drawable/border"
+                    android:text="@string/post"
+                    android:textColor="@color/colorPrimaryDark" />
+            </FrameLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/fragment_actualNetwork_scrollViewPosts"
+                android:layout_width="match_parent"
+                android:layout_height="329dp">
+
+                <LinearLayout
+                    android:id="@+id/fragment_actualNetwork_linearViewPosts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"></LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/network_frame_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:orientation="vertical"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="176dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/network_statut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="16dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <TextView
+                            android:id="@+id/network_creator"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:gravity="center" />
+
+                        <Button
+                            android:id="@+id/btn_deleteNetwork"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="74dp"
+                            android:text="@string/delete_this_network" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="257dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/network_askingMembers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:gravity="center"
+                            android:text="@string/pending_membership_requests"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <androidx.core.widget.NestedScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="187dp"
+                            android:layout_margin="16dp"
+                            android:fillViewport="true">
+
+                            <LinearLayout
+                                android:id="@+id/scrollviewPendingRequests"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/border"
+                                android:orientation="vertical"/>
+                        </androidx.core.widget.NestedScrollView>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

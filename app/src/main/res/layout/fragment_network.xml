@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_networkMainPage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/fragment_scrollViewPageOne"
+        android:layout_width="match_parent"
+        android:layout_height="622dp">
+
+        <LinearLayout
+            android:id="@+id/network_pageOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_network"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="@string/network"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/colorPrimary"
+                android:textColorHighlight="@color/design_default_color_primary_dark" />
+
+            <View
+                android:id="@+id/divider9"
+                android:layout_width="78dp"
+                android:layout_height="3dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dip"
+                android:background="@color/colorPrimary" />
+
+            <SearchView
+                android:id="@+id/network_searchView"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dip">
+
+            </SearchView>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollViewResult"
+                android:layout_width="wrap_content"
+                android:layout_height="129dp"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp">
+
+                <TableLayout
+                    android:id="@+id/tableLayout_network_available"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border"
+                        android:gravity="start">
+
+                        <TextView
+                            android:id="@+id/network_tableName1"
+                            android:layout_width="72dp"
+                            android:layout_height="match_parent"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/nom"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/network_tableDescription1"
+                            android:layout_width="153dp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/lightfade"
+                            android:fontFamily="sans-serif-condensed"
+                            android:gravity="center"
+                            android:text="@string/desription"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="italic" />
+                         <TextView
+                            android:id="@+id/network_tableStatut1"
+                            android:layout_width="55dp"
+                            android:layout_height="match_parent"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/statut"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/network_tableNombre1"
+                            android:layout_width="55dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/lightfade"
+                            android:fontFamily="serif"
+                            android:gravity="center"
+                            android:text="@string/people"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                    </TableRow>
+
+                </TableLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <Button
+                android:id="@+id/network_createBtn"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/border"
+                android:fontFamily="casual"
+                android:onClick="onClickCreateNetwork"
+                android:text="@string/create_your_network"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="serif-monospace"
+                android:text="@string/your_available_networks"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollViewNetWorkAvailable"
+                android:layout_width="wrap_content"
+                android:layout_height="155dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="32dp">
+
+                <TableLayout
+                    android:id="@+id/tableLayout_network_available1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:id="@+id/network_tableName"
+                            android:layout_width="72dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed"
+                            android:gravity="center"
+                            android:text="@string/nom"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/network_tableDescription"
+                            android:layout_width="153dp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/lightfade"
+                            android:fontFamily="sans-serif-condensed"
+                            android:gravity="center"
+                            android:text="@string/desription"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/network_tableStatut"
+                            android:layout_width="55dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed"
+                            android:gravity="center"
+                            android:text="@string/statut"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/network_tableNombre"
+                            android:layout_width="55dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/lightfade"
+                            android:fontFamily="sans-serif-condensed"
+                            android:gravity="center"
+                            android:text="@string/people"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    </TableRow>
+
+                </TableLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

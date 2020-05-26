@@ -66,7 +66,6 @@ public class PreferencesFragment extends Fragment {
         listInterests.add("Weather");
         listInterests.add("Traffic");
         listInterests.add("Calendar");
-        listInterests.add("Alarm");
 
         for(int i = 0; i< listInterests.size(); ++i){
             LayoutInflater newView = (LayoutInflater) Objects.requireNonNull(this.getContext()).getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -116,6 +115,7 @@ public class PreferencesFragment extends Fragment {
                     JSONObject jsonObject = new JSONObject(arrayList);
                     JSONArray interests = jsonObject.optJSONArray("interestArray");
                     listInterestsUser.clear();
+                    assert interests != null;
                     for(int i = 0; i<interests.length(); ++i){
                         String str_value = interests.optString(i);
                         listInterestsUser.add(str_value);

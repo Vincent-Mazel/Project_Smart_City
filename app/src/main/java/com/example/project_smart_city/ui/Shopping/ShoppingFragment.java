@@ -1,14 +1,8 @@
 package com.example.project_smart_city.ui.Shopping;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +15,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.transition.Slide;
@@ -38,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class ShoppingFragment extends Fragment implements LocationListener{
+public class ShoppingFragment extends Fragment {
 
     private ShoppingViewModel shoppingViewModel;
     private ViewGroup viewNavigation;
@@ -76,12 +69,6 @@ public class ShoppingFragment extends Fragment implements LocationListener{
         imageViewFade.setOnClickListener(view -> closeShopOffer());
 
 
-        ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()),new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
-        LocationManager locationManager = (LocationManager) Objects.requireNonNull(getContext()).getSystemService(Context.LOCATION_SERVICE);
-        assert locationManager != null;
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-
-
         loadShopByName();
 
 
@@ -94,7 +81,7 @@ public class ShoppingFragment extends Fragment implements LocationListener{
                 "Clothes"
         };
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
                 android.R.layout.simple_spinner_item, arraySpinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -126,8 +113,8 @@ public class ShoppingFragment extends Fragment implements LocationListener{
             name.setText(shop.getName());
             description.setText(shop.getDescription());
             // Pythagore in order to find distances
-            double AB = (shop.getLatitude() - latitude);
-            double BC = (shop.getLongitude() - longitude);
+            double AB = (shop.getLatitude() - MainActivity.getUser().getLatitude());
+            double BC = (shop.getLongitude() - MainActivity.getUser().getLongitude());
             double squareAC = (AB*AB) + (BC*BC);
             double AC = Math.sqrt(squareAC);
 
@@ -135,9 +122,7 @@ public class ShoppingFragment extends Fragment implements LocationListener{
             long distance = Math.round(AC*111);
             dist.setText(Math.toIntExact(distance) + " km");
 
-            v.setOnClickListener(view -> {
-                openShopOffers(shop.getId());
-            });
+            v.setOnClickListener(view -> openShopOffers(shop.getId()));
             linearLayout.addView(v, 0, new ViewGroup.LayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)));
         }
     }
@@ -184,40 +169,5 @@ public class ShoppingFragment extends Fragment implements LocationListener{
 
 }
 
-    @SuppressLint("SetTextI18n")
-    @Override
-    public void onLocationChanged(Location location) {
-        this.latitude = location.getLatitude();
-        this.longitude = location.getLongitude();
-    }
-
-    @Override
-    public void onStatusChanged(String s, int i, Bundle bundle) {
-        Log.d("Latitude","status");
-    }
-
-    @Override
-    public void onProviderEnabled(String s) {
-        Log.d("Latitude","enable");
-    }
-
-    @Override
-    public void onProviderDisabled(String s) {
-        Log.d("Latitude","disable");
-    }
-
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                } else {
-                    // permission denied, boo!
-                    aSwitch.setClickable(false);
-                }
-            }
-        }
-    }
 
 }

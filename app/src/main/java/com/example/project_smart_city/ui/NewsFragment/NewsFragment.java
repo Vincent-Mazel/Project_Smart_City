@@ -1,15 +1,10 @@
 package com.example.project_smart_city.ui.NewsFragment;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,30 +14,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.project_smart_city.MainActivity;
 import com.example.project_smart_city.R;
 
-import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public class NewsFragment extends Fragment implements LocationListener {
+public class NewsFragment extends Fragment{
 
-    private NewsViewModel newsViewModel;
-    private double latitude,longitude;
+
 
     @SuppressLint({"SetTextI18n", "RestrictedApi", "MissingPermission"})
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_actuality, container, false);
-
         TextView title = root.findViewById(R.id.title_news);
         title.setText("News");
         TextView HB = root.findViewById(R.id.HB);
@@ -54,6 +52,9 @@ public class NewsFragment extends Fragment implements LocationListener {
         // Check if it is its birthday;
         if (MainActivity.getUser().getBirthday().equals(sToday)) {
             HB.setText("Happy Birthday " + MainActivity.getUser().getPseudo() + " ! ");
+            HB.setVisibility(View.VISIBLE);
+        } else {
+            HB.setVisibility(View.GONE);
         }
         String interest = MainActivity.getUser().getListInterests();
         if (interest == null) {
@@ -61,11 +62,67 @@ public class NewsFragment extends Fragment implements LocationListener {
             textView.setText("You don't have any interest, change that in your profile !");
             textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
             linearLayout.addView(textView);
-        } else {
-            linearLayout.removeAllViews();
+
         }
 
+        double latitude = MainActivity.getUser().getLatitude();
+        double longitude = MainActivity.getUser().getLongitude();
         assert interest != null;
+        if (interest.contains("Weather")) {
+
+
+            // Using OpenWeather API.
+            String APIKey = "165d89700121b7f67b883bb9884c0689";
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            try {
+                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat="+ latitude + "&lon=" + longitude +"&appid=" + APIKey);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = urlConnection.getInputStream();
+                BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+
+                String line;
+                line = br.readLine();
+                JSONObject jsonObject = new JSONObject(line);
+
+                String city = jsonObject.getString("name");
+                JSONObject jsonObject1 = jsonObject.getJSONObject("main");
+                String temp = jsonObject1.getString("temp");
+                String temp1 = jsonObject1.getString("feels_like");
+                double t = Double.parseDouble(temp) - 273.15;
+                double t1 = Double.parseDouble(temp1) - 273.15;
+                jsonObject1 = jsonObject.getJSONObject("wind");
+                String wind = jsonObject1.getString("speed");
+                String visibility = jsonObject.getString("visibility");
+                JSONArray jsonArray = jsonObject.getJSONArray("weather");
+                jsonObject1 = jsonArray.getJSONObject(0);
+                String weather = jsonObject1.getString("description");
+
+                // inflate layout weather
+
+                LayoutInflater newView = (LayoutInflater) Objects.requireNonNull(this.getContext()).getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                assert newView != null;
+                @SuppressLint("InflateParams") View v = newView.inflate(R.layout.weather_layout, null);
+
+                TextView city_name = v.findViewById(R.id.city_name);
+                city_name.setText(city);
+                TextView temperature = v.findViewById(R.id.temp);
+                temperature.setText((int) t + " °C");
+                TextView viewWind = v.findViewById(R.id.wind);
+                viewWind.setText(wind + " m/h");
+                TextView vis = v.findViewById(R.id.visibility);
+                vis.setText("visibility : " + visibility.substring(0,3) + "%");
+                TextView main = v.findViewById(R.id.main);
+                main.setText(weather);
+                TextView tempFeels = v.findViewById(R.id.feelslike);
+                tempFeels.setText("Feels like : " + (int) t1 + " °C");
+
+                linearLayout.addView(v);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         if (interest.contains("Calendar")) {
             CalendarView calendarView = new CalendarView(Objects.requireNonNull(getContext()));
             Button button = new Button(getContext());
@@ -83,54 +140,36 @@ public class NewsFragment extends Fragment implements LocationListener {
                 startActivity(intent);
             });
 
-            linearLayout.addView(calendarView);
+            //linearLayout.addView(calendarView);
             linearLayout.addView(button);
         }
-        if (interest.contains("Weather")) {
-            ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            LocationManager locationManager = (LocationManager) Objects.requireNonNull(getContext()).getSystemService(Context.LOCATION_SERVICE);
-            assert locationManager != null;
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-            // SA PUTAIN DE MARCHE PAS LA VIE DE MOI C DE LA PUTAIN DE MERDE LA GESTION DE LA LOCATION
+        if (interest.contains("Traffic")){
+            try {
+
+                // NEED TO PARSE TRAFFIC
+                URL url = new URL("https://traffic.ls.hereapi.com/traffic/6.3/incidents.json?apiKey=QwobaSv1M-I76N3Gzo5Vn1WSwJoWI5DV_eEHR7RQEvs&bbox="+ Double.toString(latitude - 0.25).substring(0,6)+","+Double.toString(longitude - 0.25).substring(0,6)+";"+ Double.toString(latitude + 0.25).substring(0,6) + "," + Double.toString(longitude+0.25).substring(0,6) +"&criticality=minor");
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = urlConnection.getInputStream();
+                BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+
+                String line;
+                line = br.readLine();
+
+                JSONObject jsonObject = new JSONObject(line);
+                System.out.println(line);
+
+
+                LayoutInflater newView = (LayoutInflater) Objects.requireNonNull(this.getContext()).getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                assert newView != null;
+                @SuppressLint("InflateParams") View v = newView.inflate(R.layout.weather_layout, null);
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
-
         return root;
     }
-
-    @SuppressLint("SetTextI18n")
-    @Override
-    public void onLocationChanged(Location location) {
-        this.latitude = location.getLatitude();
-        this.longitude = location.getLongitude();
-    }
-
-    @Override
-    public void onStatusChanged(String s, int i, Bundle bundle) {
-        Log.d("Latitude","status");
-    }
-
-    @Override
-    public void onProviderEnabled(String s) {
-        Log.d("Latitude","enable");
-    }
-
-    @Override
-    public void onProviderDisabled(String s) {
-        Log.d("Latitude","disable");
-    }
-
-    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                } else {
-                    // permission denied, boo!
-                }
-            }
-        }
-    }
-
 }

@@ -1,9 +1,13 @@
 package com.example.project_smart_city;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ScrollView;
@@ -22,14 +26,17 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.Objects;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, LocationListener {
 
+    @SuppressLint("StaticFieldLeak")
     private static ScrollView scrollView;
     private static NavigationView navigationView;
     private static NavigationView navigationViewFade;
     private static User userLoged;
+    @SuppressLint("StaticFieldLeak")
     private static Context mContext;
 
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,13 +47,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mContext = getApplicationContext();
         scrollView = findViewById(R.id.scroll_main);
         Intent i = getIntent();
-        userLoged = (User)i.getSerializableExtra("UserLogin");
+        userLoged = (User) i.getSerializableExtra("UserLogin");
         DatabaseHandler db = new DatabaseHandler(getApplicationContext(), null, null, 1);
         db.getWritableDatabase();
         userLoged = db.findUser(userLoged.getEmail());
 
         createDataBase();
 
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        assert locationManager != null;
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,this);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
 
@@ -105,7 +115,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static User getUser(){
         DatabaseHandler db = new DatabaseHandler(mContext, null, null, 1);
         db.getWritableDatabase();
-        return db.findUser(userLoged.getEmail());
+        User user;
+        user = db.findUser(userLoged.getEmail());
+        user.setLatitude(userLoged.getLatitude());
+        user.setLongitude(userLoged.getLongitude());
+        return user;
     }
 
 
@@ -222,5 +236,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    public void onLocationChanged(Location location) {
+        if(userLoged!=null){
+            userLoged.setLongitude(location.getLongitude());
+            userLoged.setLatitude(location.getLatitude());
+        }
+    }
+
+
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
+    }
 }
 

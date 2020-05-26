@@ -69,4 +69,15 @@
     <string name="air_max_tn_raint_90">Air Max TN, RaiNté 90</string>
     <string name="un_petit_peu_de_text_pour_d_crire_ce_magnifique_produit">Un petit peu de text pour décrire ce magnifique produit</string>
     <string name="_99_99">99,99 €</string>
+    <string name="le_prix_des_p_tes_toujours_en_hausse_nle_confiment_ayant_favoris_la_consomation_de_confiements_cette_denr_e_rare_a_vu_sont_prix_presque_tripler_chez_certaines_enseignes">Le prix des pâtes toujours en hausse !  Le confiment ayant favorisé la consommation de condiments, cette denrée rare a vu sont prix presque triplé chez certaines enseignes.</string>
+    <string name="ouverture_de_l_cole_maternelle_n_elle_aurait_du_r_ouvrir_le_11_mai_comme_nous_l_avait_dit_notre_pr_sident_emmanuel_macron_mais_en_raison_d_un_taux_d_absent_isme_plus_fort_que_lors_des_dernieres_lections_pr_sidentielles_la_r_ouverture_a_t_reprogramm_e_pour_le_31_novembre_2020">Ouverture de l\'école maternelle !  Elle aurait du réouvrir le 11 mai comme nous l\'avait dit notre président Emmanuel Macron mais, en raison d\'un taux d\'absentéisme plus fort que celui des dernieres élections présidentielles, la réouverture a été reprogrammée pour le 31 novembre 2020.</string>
+    <string name="ecole">TODO</string>
+    <string name="huuum">TODO</string>
+    <string name="weather">WEATHER</string>
+    <string name="saint_marcel_d_ardeche">SAINT MARCEL D ARDECHE</string>
+    <string name="_9_c">9°C</string>
+    <string name="feels_like_7_c">Feels like 7°C</string>
+    <string name="visibility_100">Visibility : 100%</string>
+    <string name="wind_30km_h">Wind : 30km/h</string>
+    <string name="clear_sky">Clear Sky</string>
 </resources>

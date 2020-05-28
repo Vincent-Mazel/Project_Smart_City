@@ -31,7 +31,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
 
 public class ActualNetworkFragment extends Fragment {
 
@@ -87,11 +86,11 @@ public class ActualNetworkFragment extends Fragment {
                 Button btn_delete = root.findViewById(R.id.btn_deleteNetwork);
                 LinearLayout linearLayout = root.findViewById(R.id.scrollviewPendingRequests);
 
-                if(network.getListRequest() != null){
+                if(network.getListRequest() != null && !network.getListRequest().equals("")){
                     String[] sRequests = network.getListRequest().split(";;");
 
                     for(int i = 0; i<sRequests.length;++i){
-                        float density = Objects.requireNonNull(getContext()).getResources().getDisplayMetrics().density;
+                        float density = requireContext().getResources().getDisplayMetrics().density;
                         float px = 150 * density;
                         LinearLayout linearLayout1 = new LinearLayout(getContext());
                         linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
@@ -131,11 +130,12 @@ public class ActualNetworkFragment extends Fragment {
                             builder.setMessage("Do you want to add " + pseudo.getText().toString() + " to the network ?\n He will be able to post here and to see each post from other member.");
                             builder.setPositiveButton("Yes", (dialogInterface, i15) -> {
                                 network.removeRequest(sRequests[finalI]);
+                                network.addMemberToList(sRequests[finalI]);
                                 db.updateNetwork(network);
                                 Toast.makeText(getContext(), pseudo.getText().toString() + " is now a member of " + network.getName(), Toast.LENGTH_SHORT).show();
 
                                 ActualNetworkFragment actualNetworkFragment = new ActualNetworkFragment(network.getName());
-                                FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
+                                FragmentManager fm = requireActivity().getSupportFragmentManager();
                                 FragmentTransaction transaction = fm.beginTransaction();
                                 transaction.remove(this);
                                 transaction.replace(R.id.linearLayout_empty, actualNetworkFragment).addToBackStack(null).commit();
@@ -156,7 +156,7 @@ public class ActualNetworkFragment extends Fragment {
                         builder.setPositiveButton("Yes", (dialogInterface, i13) -> {
                             db.deleteNetwork(network.getId());
                             NetworkFragment networkFragment = new NetworkFragment();
-                            FragmentTransaction transaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
                             transaction.remove(this);
                             transaction.replace(R.id.linearLayout_empty, networkFragment).addToBackStack(null).commit();
                         });
@@ -176,7 +176,7 @@ public class ActualNetworkFragment extends Fragment {
                             network.removeMember(Integer.toString(MainActivity.getUser().getId()));
                             db.updateNetwork(network);
                             NetworkFragment networkFragment = new NetworkFragment();
-                            FragmentTransaction transaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
                             transaction.remove(this);
                             transaction.replace(R.id.linearLayout_empty, networkFragment).addToBackStack(null).commit();
                         });
@@ -211,7 +211,7 @@ public class ActualNetworkFragment extends Fragment {
             Post post = arrayList.get(i);
             User uAuthor = db.findUserById(post.getAuthor_id());
 
-            LayoutInflater newView = (LayoutInflater) Objects.requireNonNull(this.getContext()).getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater newView = (LayoutInflater) this.requireContext().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             assert newView != null;
             @SuppressLint("InflateParams") View v = newView.inflate(R.layout.layout_posts, null);
 
@@ -239,7 +239,7 @@ public class ActualNetworkFragment extends Fragment {
         }
         else {
 
-            LayoutInflater newView = (LayoutInflater) Objects.requireNonNull(this.getContext()).getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater newView = (LayoutInflater) this.requireContext().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             assert newView != null;
             @SuppressLint("InflateParams") View v = newView.inflate(R.layout.layout_posts, null);
 
@@ -273,7 +273,7 @@ public class ActualNetworkFragment extends Fragment {
     public void deletePost(int idPost){
         db.deleteNetwork(idPost);
         ActualNetworkFragment actualNetworkFragment = new ActualNetworkFragment(network.getName());
-        FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
+        FragmentManager fm = requireActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.remove(this);
         transaction.replace(R.id.linearLayout_empty, actualNetworkFragment).addToBackStack(null).commit();
